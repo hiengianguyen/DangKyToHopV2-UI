@@ -61,7 +61,7 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
             </Col>
           </Row>
-          <p className={cx("place-label", "mt-10")}>Thông tin cha mẹ:</p>
+          <p className={cx("place-label", "mt-10 fw-bolder")}>Thông tin cha mẹ:</p>
           <Col>
             <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
           </Col>
@@ -135,7 +135,7 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
           <div className="flex">
             <div className="flex flex-col w-1/2">
               <Col>
-                <span className={cx("health-status", "mt-2", "student-type")}>- Tình trạng sức khỏe:</span>
+                <span className={cx("health-status", "mt-2", "student-type")}>Tình trạng sức khỏe:</span>
               </Col>
               {valueStudent.sick && valueStudent.sick.length !== 0 && (
                 <>

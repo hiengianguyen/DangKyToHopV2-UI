@@ -6,9 +6,11 @@ import axios from "axios";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import toast from "react-hot-toast";
+import { getTemplateId } from "../../../../utils";
+
 const cx = classNames.bind(style);
 
-function BtnActions({ userId = "", disabled = false }) {
+function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
   const { auth } = useAuth();
 
   const handleReject = (userId) => {
@@ -45,7 +47,7 @@ function BtnActions({ userId = "", disabled = false }) {
             </Col>
             <Col xs={"auto"}>
               <a
-                href="/file/pdf/submited/{{submitedCombinationDetail.userId}}"
+                href={"/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage)}
                 className={cx("btnAction", "btn", "btn-info")}
                 target="_blank"
               >
@@ -57,7 +59,7 @@ function BtnActions({ userId = "", disabled = false }) {
           <>
             <Col xs={"auto"}>
               <a
-                href="/file/pdf/submited/{{submitedCombinationDetail.userId}}"
+                href={"/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage)}
                 className={cx("btnAction", "btn", "btn-info")}
                 target="_blank"
               >
