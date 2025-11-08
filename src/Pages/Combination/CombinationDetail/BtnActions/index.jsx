@@ -30,6 +30,16 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
       error: <b>Thất bại.</b>
     });
   };
+
+  const handleRedirectPDF = () => {
+    if (Number(keyPage) < 3) {
+      window.open("/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage), "_blank");
+    } else {
+      toast("Chức năng đang hoàn thiện...", {
+        icon: "💙"
+      });
+    }
+  };
   return (
     <div>
       <Row className={cx("btnFeature", "mt-4")}>
@@ -46,28 +56,19 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
               </button>
             </Col>
             <Col xs={"auto"}>
-              <a
-                href={"/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage)}
-                className={cx("btnAction", "btn", "btn-info")}
-                target="_blank"
-              >
+              <p onClick={handleRedirectPDF} className={cx("btnAction", "btn", "btn-info")} target="_blank">
                 Hồ sơ PDF
-              </a>
+              </p>
             </Col>
           </>
         ) : (
           <>
             <Col xs={"auto"}>
-              <a
-                href={"/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage)}
-                className={cx("btnAction", "btn", "btn-info")}
-                target="_blank"
-              >
+              <p onClick={handleRedirectPDF} className={cx("btnAction", "btn", "btn-info")} target="_blank">
                 Hồ sơ PDF
-              </a>
+              </p>
             </Col>
             <Col xs={"auto"}>
-              {" "}
               <button
                 className={cx("btnAction", "btn", "btn-danger", { disabled: disabled })}
                 type="button"

@@ -117,7 +117,8 @@
 
   &:hover {
     color: #b1b1b1;
-    box-shadow: 1px 1px 5px rgb(41, 169, 239);
+    box-shadow: 1px 5px 5px rgb(41, 150, 209);
+    transform: translateY(-2px);
     transition: all 0.3s ease;
   }
 }
