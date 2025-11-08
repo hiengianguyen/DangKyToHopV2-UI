@@ -22,22 +22,29 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
   const handleSubmit = () => {
     valueStudent.userId = auth.user.userId;
     toast
-      .promise(axios.post("http://localhost:4001/combination/submited", valueStudent), {
-        loading: "Đang gữi đi hồ sơ...",
-        success: <b>Gữi thành công!</b>,
-        error: <b>Gữi thất bại.</b>
-      })
+      .promise(
+        axios.post("http://localhost:4001/combination/submited", valueStudent),
+        {
+          loading: "Đang gữi đi hồ sơ...",
+          success: <b>Gữi thành công!</b>,
+          error: <b>Gữi thất bại.</b>,
+        }
+      )
       .then(() => navigator("/combination/detail"));
   };
 
   return (
     <>
       <div className="d-flex justify-content-between mb-4">
-        <Button primary="true" onClick={() => setCurrPage(4)} className="fs-3 px-4">
+        <Button
+          primary="true"
+          onClick={() => setCurrPage(4)}
+          className="fs-3 px-4"
+        >
           Trở lại
         </Button>
         <Button primary="true" onClick={handleSubmit} className="fs-3 px-4">
-          Gữi đi
+          Gửi đi
         </Button>
       </div>
       <Container>
