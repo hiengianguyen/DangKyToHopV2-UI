@@ -135,7 +135,7 @@ function CombinationStep4({
                   <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
                 </Col>
                 <Col xs={5}>
-                  <InputHadValue label="Thôn/KP" value={valueStudent.village} />
+                  <InputHadValue label="KP" value={valueStudent.village} />
                 </Col>
                 <Col xs={5}>
                   <InputHadValue
