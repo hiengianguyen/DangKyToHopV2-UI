@@ -109,13 +109,13 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
                 </Col>
                 <Col xs={5}>
-                  <InputHadValue label="Thôn/KP" value={valueStudent.village} />
+                  <InputHadValue label="KP" value={valueStudent.village} />
                 </Col>
                 <Col xs={5}>
                   <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
                 </Col>
                 <Col>
-                  <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
+                  <InputHadValue label="Tỉnh" value={valueStudent.city} />
                 </Col>
               </Row>
 

@@ -60,15 +60,15 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
             <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
           </Col>
           <Col>
-            <InputHadValue label="Thôn/KP" value={valueStudent.village} />
+            <InputHadValue label="KP" value={valueStudent.village} />
           </Col>
           <Col>
             <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
           </Col>
-          <Col>
-            <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
-          </Col>
         </Row>
+        <Col>
+          <InputHadValue label="Tỉnh" value={valueStudent.city} />
+        </Col>
 
         <Row>
           <Col>
@@ -115,7 +115,7 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
             <InputHadValue label="Trường học cấp 2" value={valueStudent.secondarySchool} />
           </Col>
           <Col>
-            <InputHadValue label="xã/phường" value={valueStudent.secondarySchoolDistrict} />
+            <InputHadValue label="Xã/Phường" value={valueStudent.secondarySchoolDistrict} />
           </Col>
         </Row>
       </div>

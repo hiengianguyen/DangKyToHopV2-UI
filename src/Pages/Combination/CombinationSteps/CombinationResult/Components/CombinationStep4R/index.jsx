@@ -52,15 +52,15 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
           <p className={cx("place-label", "mt-10")}>Hộ khẩu thường trú:</p>
           <Row>
             <Col>
-              <InputHadValue label="Thôn/KP" value={valueStudent.village} />
+              <InputHadValue label="KP" value={valueStudent.village} />
             </Col>
             <Col>
               <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
             </Col>
-            <Col>
-              <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
-            </Col>
           </Row>
+          <Col>
+            <InputHadValue label="Tỉnh" value={valueStudent.city} />
+          </Col>
           <p className={cx("place-label", "mt-10 fw-bolder")}>Thông tin cha mẹ:</p>
           <Col>
             <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
@@ -100,7 +100,7 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
           {valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0 && (
             <Row>
               <Col xs={"auto"}>
-                <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
+                <InputHadValue label="+ Vận động viên TT TDTT Tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
               </Col>
             </Row>
           )}

@@ -139,17 +139,17 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
             <Col xs={"auto"} className="d-flex align-items-end mt-8">
               <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
             </Col>
-            <Col>
-              <InputBorder label="Thôn/KP" name="village" defaultValue={valueStudent.village} />
-            </Col>
             <Row>
+              <Col>
+                <InputBorder label="KP" name="village" defaultValue={valueStudent.village} />
+              </Col>
               <Col>
                 <InputBorder label="Xã/Phường" name="commune" defaultValue={valueStudent.commune} />
               </Col>
-              <Col>
-                <InputBorder label="Tỉnh/Thành Phố" name="city" defaultValue={valueStudent.city} />
-              </Col>
             </Row>
+            <Col>
+              <InputBorder label="Tỉnh" name="city" defaultValue={valueStudent.city} />
+            </Col>
 
             <Col>
               <InputBorder label="Số CCCD/Mã Định Danh" name="identification" fontStyle="none" defaultValue={valueStudent.identification} />
@@ -197,31 +197,29 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
               </Col>
             </Row>
 
-            <Row>
-              <Col xs={8}>
-                <Select
-                  label="Là học sinh Trường THCS"
-                  name="secondarySchool"
-                  valueNoti="Trường học"
-                  opts={selectSchool.map((item) => ({ title: item, value: item }))}
-                  selected={valueStudent.secondarySchool}
-                />
-              </Col>
-              <Col>
-                <Select
-                  onChange={(e) => {
-                    changeSchoolSelect(e.target.value);
-                  }}
-                  label="xã/phường"
-                  name="secondarySchoolDistrict"
-                  opts={secondarySchools.map((item) => ({
-                    title: item.districtName,
-                    value: item.districtName
-                  }))}
-                  selected={valueStudent.secondarySchoolDistrict}
-                />
-              </Col>
-            </Row>
+            <Col>
+              <Select
+                label="Là học sinh Trường THCS"
+                name="secondarySchool"
+                valueNoti="Trường học"
+                opts={selectSchool.map((item) => ({ title: item, value: item }))}
+                selected={valueStudent.secondarySchool}
+              />
+            </Col>
+            <Col>
+              <Select
+                onChange={(e) => {
+                  changeSchoolSelect(e.target.value);
+                }}
+                label="Xã/Phường"
+                name="secondarySchoolDistrict"
+                opts={secondarySchools.map((item) => ({
+                  title: item.districtName,
+                  value: item.districtName
+                }))}
+                selected={valueStudent.secondarySchoolDistrict}
+              />
+            </Col>
           </Form>
           <div className={cx("doc-info")}>
             <span>Hồ sơ nhập học gồm</span>

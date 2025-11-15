@@ -117,7 +117,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                   <InputHadValue label="Họ và tên phụ huynh" value={valueStudent.nameDad || valueStudent.nameMom} />
                 </Col>
                 <Col>
-                  <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
+                  <InputHadValue label="ĐTDD" value={valueStudent.phoneDad || valueStudent.phoneMom} />
                 </Col>
               </Row>
 
