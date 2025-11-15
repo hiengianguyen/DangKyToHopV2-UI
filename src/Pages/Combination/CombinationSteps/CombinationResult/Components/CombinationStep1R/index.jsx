@@ -111,7 +111,7 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
         </Row>
 
         <Row>
-          <Col xs={8}>
+          <Col>
             <InputHadValue label="Trường học cấp 2" value={valueStudent.secondarySchool} />
           </Col>
           <Col>

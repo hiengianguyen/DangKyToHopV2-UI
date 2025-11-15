@@ -10,11 +10,7 @@ import { useRef, useState, useEffect } from "react";
 
 const cx = classNames.bind(style);
 
-function CombinationStep4({
-  setCurrPage = () => {},
-  setValueStudent = () => {},
-  valueStudent = {},
-}) {
+function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, valueStudent = {} }) {
   const [validated, setValidated] = useState(false);
   const [formElement, setFormElement] = useState();
   const [typeStudent, setTypeStudent] = useState(valueStudent.typeStudent);
@@ -65,33 +61,20 @@ function CombinationStep4({
       </div>
 
       <div className="mt-4 flex justify-between">
-        <Button
-          primary="true"
-          onClick={() => setCurrPage(3)}
-          className={cx("button", "fs-3", "px-4", "me-3")}
-        >
+        <Button primary="true" onClick={() => setCurrPage(3)} className={cx("button", "fs-3", "px-4", "me-3")}>
           Trở lại
         </Button>
-        <Button
-          primary="true"
-          onClick={() => handleSubmit(formElement)}
-          className={cx("button", "fs-3", "px-4")}
-        >
+        <Button primary="true" onClick={() => handleSubmit(formElement)} className={cx("button", "fs-3", "px-4")}>
           Tiếp tục
         </Button>
       </div>
 
-      <div
-        className={cx("card-body", "container")}
-        style={{ fontSize: "17px" }}
-      >
+      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
         <div className={cx("content")}>
           <div className={cx("header")}>
             <div className={cx("first-slogan")}>
               <span>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</span>
-              <span className={cx("second-line")}>
-                Độc lập - Tự do - Hạnh phúc
-              </span>
+              <span className={cx("second-line")}>Độc lập - Tự do - Hạnh phúc</span>
             </div>
           </div>
 
@@ -103,10 +86,7 @@ function CombinationStep4({
             <div className="container">
               <Row>
                 <Col xs={7}>
-                  <InputHadValue
-                    label="Họ và tên"
-                    value={valueStudent.fullName}
-                  />
+                  <InputHadValue label="Họ và tên" value={valueStudent.fullName} />
                 </Col>
                 <Col>
                   <InputHadValue label="Nam (Nữ)" value={valueStudent.gender} />
@@ -117,16 +97,10 @@ function CombinationStep4({
               </Row>
               <Row>
                 <Col xs={"auto"}>
-                  <InputHadValue
-                    label="Ngày sinh"
-                    value={valueStudent.dayOfBirth}
-                  />
+                  <InputHadValue label="Ngày sinh" value={valueStudent.dayOfBirth} />
                 </Col>
                 <Col>
-                  <InputHadValue
-                    label="Nơi sinh"
-                    value={valueStudent.placeOfBirth}
-                  />
+                  <InputHadValue label="Nơi sinh" value={valueStudent.placeOfBirth} />
                 </Col>
               </Row>
 
@@ -138,33 +112,21 @@ function CombinationStep4({
                   <InputHadValue label="KP" value={valueStudent.village} />
                 </Col>
                 <Col xs={5}>
-                  <InputHadValue
-                    label="Xã/Phường"
-                    value={valueStudent.commune}
-                  />
+                  <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
                 </Col>
                 <Col>
-                  <InputHadValue
-                    label="Tỉnh/Thành Phố"
-                    value={valueStudent.city}
-                  />
+                  <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
                 </Col>
               </Row>
 
               <Row>
                 <Col>
-                  <InputHadValue
-                    label="Họ và tên cha"
-                    value={valueStudent.nameDad}
-                  />
+                  <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
                 </Col>
               </Row>
               <Row>
                 <Col>
-                  <InputHadValue
-                    label="Nghề nghiệp"
-                    value={valueStudent.jobDad}
-                  />
+                  <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
                 </Col>
                 <Col xs={"auto"}>
                   <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
@@ -173,19 +135,13 @@ function CombinationStep4({
 
               <Row>
                 <Col>
-                  <InputHadValue
-                    label="Họ và tên mẹ"
-                    value={valueStudent.nameMom}
-                  />
+                  <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
                 </Col>
               </Row>
 
               <Row>
                 <Col>
-                  <InputHadValue
-                    label="Nghề nghiệp"
-                    value={valueStudent.jobMom}
-                  />
+                  <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
                 </Col>
                 <Col xs={"auto"}>
                   <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
@@ -193,8 +149,7 @@ function CombinationStep4({
               </Row>
 
               <span className={cx("student-type")}>
-                - Là học sinh thuộc diện sau{" "}
-                <i>(thuộc diện nào thì đánh dấu vào ô tương ứng)</i>
+                - Là học sinh thuộc diện sau <i>(thuộc diện nào thì đánh dấu vào ô tương ứng)</i>
               </span>
 
               <Row className="fs-1">
@@ -202,28 +157,26 @@ function CombinationStep4({
                   <Form.Check
                     label="Con liệt sĩ"
                     value={"Con liệt sĩ"}
-                    checked={valueStudent?.typeStudent?.includes("Con liệt sĩ")}
+                    checked={typeStudent.length ? typeStudent?.includes("Con liệt sĩ") : valueStudent?.typeStudent?.includes("Con liệt sĩ")}
                     type="checkbox"
                     required={false}
                     name="typeStudent"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setTypeStudent)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Con thương binh, bệnh binh từ 81% trở lên"
                     value={"Con thương binh, bệnh binh từ 81% trở lên"}
-                    checked={valueStudent?.typeStudent?.includes(
-                      "Con thương binh, bệnh binh từ 81% trở lên"
-                    )}
+                    checked={
+                      typeStudent.length
+                        ? typeStudent?.includes("Con thương binh, bệnh binh từ 81% trở lên")
+                        : valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh từ 81% trở lên")
+                    }
                     type="checkbox"
                     required={false}
                     name="typeStudent"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setTypeStudent)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
@@ -232,30 +185,30 @@ function CombinationStep4({
                   <Form.Check
                     label="Con dân tộc thiểu số"
                     value={"Con dân tộc thiểu số"}
-                    checked={valueStudent?.typeStudent?.includes(
-                      "Con dân tộc thiểu số"
-                    )}
+                    checked={
+                      typeStudent.length
+                        ? typeStudent?.includes("Con dân tộc thiểu số")
+                        : valueStudent?.typeStudent?.includes("Con dân tộc thiểu số")
+                    }
                     type="checkbox"
                     required={false}
                     name="typeStudent"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setTypeStudent)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Con thương binh, bệnh binh dưới 81%"
                     value={"Con thương binh, bệnh binh dưới 81%"}
-                    checked={valueStudent?.typeStudent?.includes(
-                      "Con thương binh, bệnh binh dưới 81%"
-                    )}
+                    checked={
+                      typeStudent.length
+                        ? typeStudent?.includes("Con thương binh, bệnh binh dưới 81%")
+                        : valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh dưới 81%")
+                    }
                     type="checkbox"
                     required={false}
                     name="typeStudent"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setTypeStudent)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
@@ -264,33 +217,27 @@ function CombinationStep4({
                   <Form.Check
                     label="Con Anh hùng LLVT"
                     value={"Con Anh hùng LLVT"}
-                    checked={valueStudent?.typeStudent?.includes(
-                      "Con Anh hùng LLVT"
-                    )}
+                    checked={
+                      typeStudent.length
+                        ? typeStudent?.includes("Con Anh hùng LLVT")
+                        : valueStudent?.typeStudent?.includes("Con Anh hùng LLVT")
+                    }
                     type="checkbox"
                     required={false}
                     name="typeStudent"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setTypeStudent)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
               <Row>
                 <Col xs={"auto"}>
-                  <InputHadValue
-                    label="+ Vận động viên TT TDTT tỉnh/TP (nếu có), môn"
-                    value={valueStudent.avchielementGroup}
-                  />
+                  <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP (nếu có), môn" value={valueStudent.avchielementGroup} />
                 </Col>
               </Row>
 
               <Row>
                 <Col xs={"auto"}>
-                  <InputHadValue
-                    label="- Năng khiếu vượt trội (môn/lĩnh vực – nếu có)"
-                    value={valueStudent.aptitude}
-                  />
+                  <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
                 </Col>
               </Row>
 
@@ -318,25 +265,13 @@ function CombinationStep4({
 
               <Row>
                 <Col>
-                  <span className={cx("health-status", "mt-2")}>
-                    - Tình trạng sức khỏe:
-                  </span>
+                  <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
                 </Col>
                 <Col>
-                  <InputBorder
-                    label="+ Chiều cao (cm)"
-                    type="number"
-                    name="height"
-                    defaultValue={valueStudent.height}
-                  />
+                  <InputBorder label="+ Chiều cao (cm)" type="number" name="height" defaultValue={valueStudent.height} />
                 </Col>
                 <Col>
-                  <InputBorder
-                    label="+ Cân nặng (kg)"
-                    type="number"
-                    name="weight"
-                    defaultValue={valueStudent.weight}
-                  />
+                  <InputBorder label="+ Cân nặng (kg)" type="number" name="weight" defaultValue={valueStudent.weight} />
                 </Col>
               </Row>
 
@@ -350,9 +285,7 @@ function CombinationStep4({
                     type="checkbox"
                     required={false}
                     name="sick"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setSicks)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
                 <Col>
@@ -363,9 +296,7 @@ function CombinationStep4({
                     type="checkbox"
                     required={false}
                     name="sick"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setSicks)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
                 <Col>
@@ -376,9 +307,7 @@ function CombinationStep4({
                     type="checkbox"
                     required={false}
                     name="sick"
-                    onChange={(e) =>
-                      handleAddTypeStudent(e.target.value, setSicks)
-                    }
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
               </Row>

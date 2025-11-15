@@ -14,18 +14,13 @@ function Footer() {
           />
         </div>
         <div className={cx("content")}>
-          <h4 className={cx("management-by", "fw-bold", "mb-4")}>
-            Bản quyền thuộc về: Trường THPT Duy Tân
-          </h4>
-          <p>
-            Địa chỉ: KP Ngọc Mỹ, Phường Quảng Phú, TP. Đà Nẵng - Điện Thoại:
-            0235.3841.942
-          </p>
-          <p className={cx("create-by", "flex items-center gap-2")}>
+          <h4 className={cx("management-by", "fw-bold", "mb-4")}>Bản quyền thuộc về: Trường THPT Duy Tân</h4>
+          <p>Địa chỉ: KP Ngọc Mỹ, Phường Quảng Phú, TP. Đà Nẵng - Điện Thoại: 0235.3841.942</p>
+          <span className={cx("create-by", "flex items-center gap-2")}>
             Website được thiết kế và phát triển bởi
             <i className="fw-bold">Nguyễn Gia Hiền</i>
             <p className="italic text-white">© 2025</p>
-          </p>
+          </span>
         </div>
       </div>
     </div>

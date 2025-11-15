@@ -50,7 +50,7 @@ function CombinationStep3R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="Họ và tên phụ huynh" value={valueStudent.nameDad || valueStudent.nameMom} />
             </Col>
             <Col>
-              <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
+              <InputHadValue label="ĐTDD" value={valueStudent.phoneDad} />
             </Col>
           </Row>
           <div className={cx("info-box", "mt-4")}>

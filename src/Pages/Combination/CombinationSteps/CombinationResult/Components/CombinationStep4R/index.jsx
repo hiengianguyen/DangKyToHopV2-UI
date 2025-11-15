@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/esm/Badge";
 import { typeBadge } from "../../../../../../utils";
+import Form from "react-bootstrap/Form";
 
 const cx = classNames.bind(style);
 
@@ -84,89 +85,123 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
             </Col>
           </Row>
-          {valueStudent.typeStudent && valueStudent.typeStudent.length !== 0 && (
-            <div className="mt-10">
-              <span className={cx("student-type")}>- Là học sinh thuộc diện sau:</span>
-              <ol className="list-decimal ps-10 ms-10 fs-2">
-                {valueStudent.typeStudent &&
-                  valueStudent.typeStudent.map((item, index) => (
-                    <li className="fs-2" key={index}>
-                      {item}
-                    </li>
-                  ))}
-              </ol>
-            </div>
-          )}
-          {valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="+ Vận động viên TT TDTT Tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
-              </Col>
-            </Row>
-          )}
-          {valueStudent.aptitude && valueStudent.aptitude.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Năng khiếu vượt trội" value={valueStudent.aptitude} />
-              </Col>
-            </Row>
-          )}
-          {valueStudent.priorityGroup && valueStudent.priorityGroup.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Diện mồ côi, hộ nghèo, hộ cận nghèo" value={valueStudent.priorityGroup} />
-              </Col>
-            </Row>
-          )}
-          {valueStudent.difficultSituation && valueStudent.difficultSituation.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Hoàn cảnh khó khăn" value={valueStudent.difficultSituation} />
-              </Col>
-            </Row>
-          )}
-          {valueStudent.disability && valueStudent.disability.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
-              </Col>
-            </Row>
-          )}
-          <div className="flex">
-            <div className="flex flex-col w-1/2">
-              <Col>
-                <span className={cx("health-status", "mt-2", "student-type")}>Tình trạng sức khỏe:</span>
-              </Col>
-              {valueStudent.sick && valueStudent.sick.length !== 0 && (
-                <>
-                  <span className="fs-1">Mắc bệnh:</span>
-                  <ul className="list-disc ps-10 ms-10 fs-2">
-                    {valueStudent.sick &&
-                      valueStudent.sick.map((item, index) => (
-                        <li className="fs-2" key={index}>
-                          {item}
-                        </li>
-                      ))}
-                  </ul>
-                </>
-              )}
-            </div>
-            <Row>
-              <Col>
-                <InputHadValue label="+ Chiều cao (cm)" value={valueStudent.height} />
-              </Col>
-              <Col>
-                <InputHadValue label="+ Cân nặng (kg)" value={valueStudent.weight} />
-              </Col>
-            </Row>
-          </div>
-          {valueStudent.disability && valueStudent.disability.length !== 0 && (
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
-              </Col>
-            </Row>
-          )}
+          <span className={cx("student-type")}>- Là học sinh thuộc diện sau</span>
+
+          <Row className="fs-1">
+            <Col>
+              <Form.Check label="Con liệt sĩ" checked={valueStudent?.typeStudent?.includes("Con liệt sĩ")} type="checkbox" />
+            </Col>
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Con thương binh, bệnh binh từ 81% trở lên"
+                checked={valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh từ 81% trở lên")}
+                type="checkbox"
+              />
+            </Col>
+          </Row>
+          <Row className="fs-1">
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Con dân tộc thiểu số"
+                checked={valueStudent?.typeStudent?.includes("Con dân tộc thiểu số")}
+                type="checkbox"
+              />
+            </Col>
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Con thương binh, bệnh binh dưới 81%"
+                checked={valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh dưới 81%")}
+                type="checkbox"
+              />
+            </Col>
+          </Row>
+          <Row className="fs-1">
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Con Anh hùng LLVT"
+                checked={valueStudent?.typeStudent?.includes("Con Anh hùng LLVT")}
+                type="checkbox"
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực)" value={valueStudent.aptitude} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue
+                label="- Diện mồ côi, hộ nghèo, hộ cận nghèo"
+                nonRequired={true}
+                name="priorityGroup"
+                value={valueStudent.priorityGroup}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue
+                label="- Hoàn cảnh khó khăn"
+                nonRequired={true}
+                name="difficultSituation"
+                value={valueStudent.difficultSituation}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
+            </Col>
+            <Col>
+              <InputHadValue label="+ Chiều cao (cm)" type="number" name="height" value={valueStudent.height} />
+            </Col>
+            <Col>
+              <InputHadValue label="+ Cân nặng (kg)" type="number" name="weight" value={valueStudent.weight} />
+            </Col>
+          </Row>
+
+          <Row className="mt-4 fs-1">
+            <Col xs={"auto"}>+ </Col>
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Bệnh ngoài da"
+                checked={valueStudent?.sick?.includes("Bệnh ngoài da")}
+                type="checkbox"
+              />
+            </Col>
+            <Col>
+              <Form.Check
+                onChange={() => {}}
+                label="Bệnh tim mạch"
+                checked={valueStudent?.sick?.includes("Bệnh tim mạch")}
+                type="checkbox"
+              />
+            </Col>
+            <Col>
+              <Form.Check onChange={() => {}} label="Bệnh hô hấp" checked={valueStudent?.sick?.includes("Bệnh hô hấp")} type="checkbox" />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
+            </Col>
+          </Row>
         </div>
       </div>
     </div>
