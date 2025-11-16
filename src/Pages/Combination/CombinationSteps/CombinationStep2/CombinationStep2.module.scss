@@ -100,3 +100,20 @@
   height: 160px;
   width: 120px;
 }
+
+.resgiter-place-box {
+  > p {
+    font-size: 22px;
+  }
+}
+
+.input-resgiter-place {
+  max-width: 200px;
+  text-align: center;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 20px !important;
+  border-bottom: 2px dotted #000 !important;
+  padding: 10px !important;
+  padding-bottom: 0;
+}

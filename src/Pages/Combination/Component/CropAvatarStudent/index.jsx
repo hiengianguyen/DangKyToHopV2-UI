@@ -6,7 +6,7 @@ import style from "./CropAvatarStudent.module.scss";
 
 const cx = classNames.bind(style);
 
-function CropAvatarStudent({ imgUrl = "", onChangeImg = () => {}, setShowCropper = () => {} }) {
+function CropAvatarStudent({ imgUrl = "", onChangeImg = () => {}, setShowCropper = () => {}, size = 3 / 4 }) {
   const cropperRef = useRef();
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
@@ -19,7 +19,7 @@ function CropAvatarStudent({ imgUrl = "", onChangeImg = () => {}, setShowCropper
         ref={cropperRef}
         src={imgUrl ? imgUrl : undefined}
         style={{ width: "100%", height: "100%" }}
-        aspectRatio={3 / 4}
+        aspectRatio={size}
         crop={onCrop}
         guides={false}
       />
