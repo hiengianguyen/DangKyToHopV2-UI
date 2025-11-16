@@ -16,18 +16,18 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
   const handleReject = (userId) => {
     if (disabled) return;
     toast.promise(axios.post("http://localhost:4001/combination/submited-reject/" + userId), {
-      loading: "Đang tiến hành...",
-      success: <b>Thành công!</b>,
-      error: <b>Thất bại.</b>
+      loading: "Đang huỷ phê duyệt...",
+      success: <b>Huỷ phê duyệt thành công!</b>,
+      error: <b>Huỷ phê duyệt thất bại.</b>
     });
   };
 
   const handleApprove = (userId) => {
     if (disabled) return;
     toast.promise(axios.post("http://localhost:4001/combination/submited-approve/" + userId), {
-      loading: "Đang tiến hành...",
-      success: <b>Thành công!</b>,
-      error: <b>Thất bại.</b>
+      loading: "Đang phê duyệt...",
+      success: <b>Phê duyệt thành công!</b>,
+      error: <b>Phê duyệt thất bại.</b>
     });
   };
 
