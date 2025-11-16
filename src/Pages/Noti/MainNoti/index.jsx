@@ -15,6 +15,7 @@ const cx = classNames.bind(style);
 
 function MainNoti() {
   const [listNoti, setListNoti] = useState([]);
+  const [notiSubmittedStatus, setNotiSubmittedStatus] = useState({});
   const [role, setRole] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showListAction, setShowListAction] = useState(false);
@@ -32,6 +33,7 @@ function MainNoti() {
     axios.get("http://localhost:4001/notification").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setListNoti(axiosData.data.notifications);
+        setNotiSubmittedStatus(axiosData.data.notiSubmittedStatus);
         setRole(axiosData.data.role);
         setLoading(false);
       } else {
@@ -74,6 +76,14 @@ function MainNoti() {
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
+            {notiSubmittedStatus && (
+              <div className={cx("noti-box", "rounded-4")}>
+                <h5 className={cx("title", "pe-4 fs-2")}>
+                  <Link to={"/combination/detail"}>{notiSubmittedStatus.title}</Link>
+                </h5>
+                <p className={cx("timer", "mb-0")}>Tạo lúc: {notiSubmittedStatus.publishAt}</p>
+              </div>
+            )}
             {listNoti ? (
               listNoti.map((item, index) => (
                 <div className={cx("noti-box", "rounded-4")} key={index}>
