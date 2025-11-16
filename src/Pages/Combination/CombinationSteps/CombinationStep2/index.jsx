@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import CropAvatarStudent from "../../Component/CropAvatarStudent";
 import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
+import UploadSignature from "../../../../Components/UploadSignature";
 
 const cx = classNames.bind(style);
 
@@ -22,6 +23,8 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
   const [showResultImg, setShowResultImg] = useState(false);
   const [showCropper, setShowCropper] = useState(false);
   const [validated, setValidated] = useState(false);
+
+  const currentTime = new Date();
 
   useEffect(() => {
     setFormElememt(formRef.current);
@@ -106,6 +109,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   />
                   {showCropper && (
                     <CropAvatarStudent
+                      size={3 / 4}
                       setShowCropper={setShowCropper}
                       imgUrl={valueStudent.avatarImgPrev || urlAvarTar}
                       onChangeImg={setUrlAvarTarResult}
@@ -124,7 +128,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 )}
               </div>
               <div className={cx("title-doc")}>
-                <span>Kính gử: Hiệu trưởng Trường THPT Duy Tân</span>
+                <span>Kính gữi: Hiệu trưởng Trường THPT Duy Tân</span>
               </div>
             </div>
             <Row>
@@ -248,11 +252,36 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 />
               </Col>
             </Row>
+            <p className={cx("quote")}>
+              Em làm đơn này xin được nhập học lớp 10 Trường THPT Duy Tân năm học 2025 -2026 và cam kết thực hiện nghiêm túc nhiệm vụ của
+              học sinh, chấp hành tốt nội quy nhà trường.
+            </p>
+            <div className={cx("flex justify-end items-center fst-italic mt-4", "resgiter-place-box")}>
+              <Form.Control
+                className={cx("input-resgiter-place")}
+                defaultValue={valueStudent.registerPlace}
+                required
+                type="text"
+                name="registerPlace"
+              />
+              <p>, ngày</p> <p className="mx-2">{currentTime.getDate()}</p>
+              <p>tháng</p> <p className="mx-2">{currentTime.getMonth() + 1}</p>
+              <p>năm</p> <p className="mx-2">{currentTime.getFullYear()}</p>
+            </div>
+
+            <div className="flex items-center mt-20 fs-2">
+              <div className="flex flex-col items-center">
+                <b>Xác nhận của cha/mẹ HS hoặc người giám hộ</b>
+                <i>(Ký và ghi rõ họ tên)</i>
+                <UploadSignature title="Chữ ký của cha/mẹ" dataAvatarImg={valueStudent.signatureParents} name="signatureParents" />
+              </div>
+              <div className="flex flex-col items-center flex-1">
+                <b>Học sinh</b>
+                <i>(Ký và ghi rõ họ tên)</i>
+                <UploadSignature title="Chữ ký của học sinh" dataAvatarImg={valueStudent.signatureStudent} name="signatureStudent" />
+              </div>
+            </div>
           </Form>
-          <p className={cx("quote")}>
-            Em làm đơn này xin được nhập học lớp 10 Trường THPT Duy Tân năm học 2025 -2026 và cam kết thực hiện nghiêm túc nhiệm vụ của học
-            sinh, chấp hành tốt nội quy nhà trường.
-          </p>
         </div>
       </div>
     </div>

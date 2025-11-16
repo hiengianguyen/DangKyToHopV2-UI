@@ -5,10 +5,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/esm/Badge";
 import { typeBadge } from "../../../../../../utils";
+import formatDayRegistered from "../../../../../../utils/formatDayRegistered";
 
 const cx = classNames.bind(style);
 
 function CombinationStep2R({ valueStudent = {}, role = "student" }) {
+  const date = formatDayRegistered(valueStudent.registeredAt);
   return (
     <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
       {role === "manager" && (
@@ -127,6 +129,25 @@ function CombinationStep2R({ valueStudent = {}, role = "student" }) {
           Em làm đơn này xin được nhập học lớp 10 Trường THPT Duy Tân năm học 2025 -2026 và cam kết thực hiện nghiêm túc nhiệm vụ của học
           sinh, chấp hành tốt nội quy nhà trường.
         </p>
+        <div className={cx("flex justify-end items-center fst-italic mt-4", "resgiter-place-box")}>
+          <p className={cx("input-resgiter-place")}>{valueStudent.registerPlace}</p>
+          <p>, ngày</p> <p className="mx-2">{date[0]}</p>
+          <p>tháng</p> <p className="mx-2">{date[1]}</p>
+          <p>năm</p> <p className="mx-2">{date[2]}</p>
+        </div>
+
+        <div className="flex items-center mt-20 fs-2">
+          <div className="flex flex-col items-center">
+            <b>Xác nhận của cha/mẹ HS hoặc người giám hộ</b>
+            <i>(Ký và ghi rõ họ tên)</i>
+            <img src={valueStudent.signatureParents} style={{ width: "260px", height: "130px", marginTop: "10px" }} alt="" />
+          </div>
+          <div className="flex flex-col items-center flex-1">
+            <b>Học sinh</b>
+            <i>(Ký và ghi rõ họ tên)</i>
+            <img src={valueStudent.signatureStudent} style={{ width: "260px", height: "130px", marginTop: "10px" }} alt="" />
+          </div>
+        </div>
       </div>
     </div>
   );
