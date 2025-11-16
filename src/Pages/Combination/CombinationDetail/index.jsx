@@ -60,7 +60,9 @@ function CombinationDetail() {
             <CombinationStep4R valueStudent={submitedDetail} role={auth?.user?.role} />
           </Tab>
         </Tabs>
-        {submitedDetail && <BtnActions keyPage={key} userId={submitedDetail.userId} disabled={submitedDetail.status === "approved"} />}
+        {submitedDetail && (
+          <BtnActions keyPage={key} userId={submitedDetail.userId} disabled={["approved", "rejected"].includes(submitedDetail.status)} />
+        )}
       </Container>
     </BoxRadius>
   );
