@@ -50,8 +50,6 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, 
         error: <b>Thất bại.</b>
       })
       .then((res) => {
-        console.log(res.data.docAfter);
-
         setCombinations((prev) => {
           return prev.map((item) => (item.id === id ? res.data.docAfter : item));
         });
