@@ -19,8 +19,6 @@ function TablePoints({ valueStudent = {}, readOnly = false }) {
 
   useEffect(() => {
     if (valueStudent === undefined) return;
-    console.log("change");
-
     setTotal(Number(valueStudent.mathPoint) + Number(valueStudent.literaturePoint) + Number(valueStudent.englishPoint));
   }, [valueStudent]);
 
