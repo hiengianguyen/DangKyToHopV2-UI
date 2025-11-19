@@ -76,7 +76,7 @@ function MainNoti() {
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
-            {notiSubmittedStatus && (
+            {JSON.stringify(notiSubmittedStatus) !== '{}' && (
               <div className={cx("noti-box", "rounded-4")}>
                 <h5 className={cx("title", "pe-4 fs-2")}>
                   <Link to={"/combination/detail"}>{notiSubmittedStatus.title}</Link>

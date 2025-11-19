@@ -40,11 +40,13 @@ function CombinationStep2R({ valueStudent = {}, role = "student" }) {
           </div>
         </div>
         <Row>
-          <Col xs={8}>
+          <Col xs={6}>
             <InputHadValue label="Em tên là" value={valueStudent.fullName} />
           </Col>
           <Col>
             <InputHadValue label="Nam (Nữ)" value={valueStudent.gender} />
+          </Col><Col>
+            <InputHadValue label="Dân tộc" value={valueStudent.nation} />
           </Col>
         </Row>
         <Row>
@@ -52,17 +54,12 @@ function CombinationStep2R({ valueStudent = {}, role = "student" }) {
             <InputHadValue label="Sinh ngày" value={valueStudent.dayOfBirth} />
           </Col>
           <Col>
-            <InputHadValue label="Dân tộc" value={valueStudent.nation} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <InputHadValue label="Địa chỉ thường chú" value={`KP ${valueStudent.village}, ${valueStudent.commune}, ${valueStudent.city}`} />
-          </Col>
-          <Col>
             <InputHadValue label="Số điện thoại" value={valueStudent.phone} />
           </Col>
         </Row>
+        <Col>
+          <InputHadValue label="Địa chỉ thường chú" value={`KP ${valueStudent.village}, ${valueStudent.commune}, ${valueStudent.city}`} />
+        </Col>
         <Row>
           <Col>
             <InputHadValue label="Học sinh lớp 9 Trường THCS" value={valueStudent.secondarySchool} />

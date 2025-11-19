@@ -78,14 +78,14 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
             </div>
           </div>
 
-          <div className={cx("title-doc")}>
+          <div className={cx("title-doc", "mb-20")}>
             <span>LÝ LỊCH HỌC SINH</span>
           </div>
 
           <Form validated={validated} ref={formRef} onSubmit={handleSubmit}>
             <div className="container">
               <Row>
-                <Col xs={7}>
+                <Col xs={6}>
                   <InputHadValue label="Họ và tên" value={valueStudent.fullName} />
                 </Col>
                 <Col>
@@ -96,7 +96,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 </Col>
               </Row>
               <Row>
-                <Col xs={"auto"}>
+                <Col>
                   <InputHadValue label="Ngày sinh" value={valueStudent.dayOfBirth} />
                 </Col>
                 <Col>
@@ -104,31 +104,30 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 </Col>
               </Row>
 
+                
+              <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Hộ khẩu thường trú:</p>
               <Row>
-                <Col xs={"auto"} className="d-flex align-items-end">
-                  <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
-                </Col>
-                <Col xs={5}>
+                <Col>
                   <InputHadValue label="KP" value={valueStudent.village} />
                 </Col>
-                <Col xs={5}>
+                <Col>
                   <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
                 </Col>
+              </Row>
                 <Col>
                   <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
                 </Col>
-              </Row>
 
-              <Row>
+                <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Thông tin cha mẹ:</p>
+
                 <Col>
                   <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
                 </Col>
-              </Row>
               <Row>
                 <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
                 </Col>
-                <Col xs={"auto"}>
+                <Col>
                   <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
                 </Col>
               </Row>
@@ -143,7 +142,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
                 </Col>
-                <Col xs={"auto"}>
+                <Col>
                   <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
                 </Col>
               </Row>
@@ -229,44 +228,33 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   />
                 </Col>
               </Row>
-              <Row>
-                <Col xs={"auto"}>
-                  <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP (nếu có), môn" value={valueStudent.avchielementGroup} />
-                </Col>
-              </Row>
+              <Col className="mt-10">
+                <InputHadValue label="- Vận động viên TT TDTT tỉnh/TP (nếu có), môn" value={valueStudent.avchielementGroup} />
+              </Col>
 
-              <Row>
-                <Col xs={"auto"}>
-                  <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
-                </Col>
-              </Row>
+              <Col>
+                <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
+              </Col>
 
-              <Row>
-                <Col xs={"auto"}>
-                  <InputBorder
-                    label="- Diện mồ côi, hộ nghèo, hộ cận nghèo (nếu có)"
-                    nonRequired={true}
-                    name="priorityGroup"
-                    defaultValue={valueStudent.priorityGroup}
-                  />
-                </Col>
-              </Row>
+              <Col>
+                <InputBorder
+                  label="- Diện mồ côi, hộ nghèo, hộ cận nghèo (nếu có)"
+                  nonRequired={true}
+                  name="priorityGroup"
+                  defaultValue={valueStudent.priorityGroup}
+                />
+              </Col>
 
+              <Col>
+                <InputBorder
+                  label="- Hoàn cảnh khó khăn (nếu có)"
+                  nonRequired={true}
+                  name="difficultSituation"
+                  defaultValue={valueStudent.difficultSituation}
+                />
+              </Col>
+                <span className={cx("health-status", "mt-2 fw-bold")}>Tình trạng sức khỏe:</span>
               <Row>
-                <Col xs={"auto"}>
-                  <InputBorder
-                    label="- Hoàn cảnh khó khăn (nếu có)"
-                    nonRequired={true}
-                    name="difficultSituation"
-                    defaultValue={valueStudent.difficultSituation}
-                  />
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
-                </Col>
                 <Col>
                   <InputBorder label="+ Chiều cao (cm)" type="number" name="height" defaultValue={valueStudent.height} />
                 </Col>
@@ -311,17 +299,14 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   />
                 </Col>
               </Row>
-
-              <Row>
-                <Col xs={"auto"}>
-                  <InputBorder
-                    label="+ Diện khuyết tật (nếu có)"
-                    nonRequired={true}
-                    name="disability"
-                    defaultValue={valueStudent.disability}
-                  />
-                </Col>
-              </Row>
+              <Col xs={"auto"} className="mt-10">
+                <InputBorder
+                  label="+ Diện khuyết tật (nếu có)"
+                  nonRequired={true}
+                  name="disability"
+                  defaultValue={valueStudent.disability}
+                />
+              </Col>
             </div>
           </Form>
         </div>

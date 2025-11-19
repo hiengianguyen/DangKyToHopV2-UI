@@ -27,7 +27,7 @@ function CombinationStep4R({ valueStudent = {} }) {
             <span className={cx("second-line")}>Độc lập - Tự do - Hạnh phúc</span>
           </div>
         </div>
-        <div className={cx("title-doc")}>
+        <div className={cx("title-doc", "mb-20")}>
           <span>LÝ LỊCH HỌC SINH</span>
         </div>
         <div className="container">
@@ -50,10 +50,10 @@ function CombinationStep4R({ valueStudent = {} }) {
               <InputHadValue label="Nơi sinh" value={valueStudent.placeOfBirth} />
             </Col>
           </Row>
-          <p className={cx("place-label", "mt-10")}>Hộ khẩu thường trú:</p>
+          <p className={cx("place-label", "my-6 fw-bold")}>Hộ khẩu thường trú:</p>
           <Row>
             <Col>
-              <InputHadValue label="KP" value={valueStudent.village} />
+              <InputHadValue label="Khối phố" value={valueStudent.village} />
             </Col>
             <Col>
               <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
@@ -62,7 +62,7 @@ function CombinationStep4R({ valueStudent = {} }) {
           <Col>
             <InputHadValue label="Tỉnh" value={valueStudent.city} />
           </Col>
-          <p className={cx("place-label", "mt-10 fw-bolder")}>Thông tin cha mẹ:</p>
+          <p className={cx("place-label", "my-6 fw-bolder")}>Thông tin cha mẹ:</p>
           <Col>
             <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
           </Col>
@@ -85,8 +85,7 @@ function CombinationStep4R({ valueStudent = {} }) {
               <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
             </Col>
           </Row>
-          <span className={cx("student-type")}>- Là học sinh thuộc diện sau</span>
-
+          <span className={cx("student-type", "my-6")}>Là học sinh thuộc diện sau</span>
           <Row className="fs-1">
             <Col>
               <Form.Check label="Con liệt sĩ" checked={valueStudent?.typeStudent?.includes("Con liệt sĩ")} type="checkbox" />
@@ -118,62 +117,48 @@ function CombinationStep4R({ valueStudent = {} }) {
               />
             </Col>
           </Row>
-          <Row className="fs-1">
-            <Col>
-              <Form.Check
-                onChange={() => {}}
-                label="Con Anh hùng LLVT"
-                checked={valueStudent?.typeStudent?.includes("Con Anh hùng LLVT")}
-                type="checkbox"
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
-            </Col>
-          </Row>
+          <Col className="fs-1">
+            <Form.Check
+              onChange={() => {}}
+              label="Con Anh hùng LLVT"
+              checked={valueStudent?.typeStudent?.includes("Con Anh hùng LLVT")}
+              type="checkbox"
+            />
+          </Col>
+          <Col className="mt-10">
+            <InputHadValue label="- Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
+          </Col>
+          <Col>
+            <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực)" value={valueStudent.aptitude} />
+          </Col>
+          <Col>
+            <InputHadValue
+              label="- Diện mồ côi, hộ nghèo, hộ cận nghèo"
+              nonRequired={true}
+              name="priorityGroup"
+              value={valueStudent.priorityGroup}
+            />
+          </Col>
 
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực)" value={valueStudent.aptitude} />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue
-                label="- Diện mồ côi, hộ nghèo, hộ cận nghèo"
-                nonRequired={true}
-                name="priorityGroup"
-                value={valueStudent.priorityGroup}
-              />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue
-                label="- Hoàn cảnh khó khăn"
-                nonRequired={true}
-                name="difficultSituation"
-                value={valueStudent.difficultSituation}
-              />
-            </Col>
-          </Row>
-
+          <Col>
+            <InputHadValue
+              label="- Hoàn cảnh khó khăn"
+              nonRequired={true}
+              name="difficultSituation"
+              value={valueStudent.difficultSituation}
+            />
+          </Col>          
+          <Col>
+            <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
+          </Col>
           <Row>
             <Col>
-              <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
+              <InputHadValue label="+ Chiều cao (cm)" type="number" name="height" fontStyle="normal" value={`${valueStudent.height} cm`} />
             </Col>
             <Col>
-              <InputHadValue label="+ Chiều cao (cm)" type="number" name="height" value={valueStudent.height} />
-            </Col>
-            <Col>
-              <InputHadValue label="+ Cân nặng (kg)" type="number" name="weight" value={valueStudent.weight} />
+              <InputHadValue label="+ Cân nặng (kg)" type="number" name="weight" fontStyle="normal" value={`${valueStudent.weight} kg`} />
             </Col>
           </Row>
-
           <Row className="mt-4 fs-1">
             <Col xs={"auto"}>+ </Col>
             <Col>
@@ -196,12 +181,9 @@ function CombinationStep4R({ valueStudent = {} }) {
               <Form.Check onChange={() => {}} label="Bệnh hô hấp" checked={valueStudent?.sick?.includes("Bệnh hô hấp")} type="checkbox" />
             </Col>
           </Row>
-
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
-            </Col>
-          </Row>
+          <Col className="mt-10">
+            <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
+          </Col>
         </div>
       </div>
     </div>

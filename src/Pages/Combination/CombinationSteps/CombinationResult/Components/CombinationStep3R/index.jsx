@@ -60,19 +60,35 @@ function CombinationStep3R({ valueStudent = {}, role = "student" }) {
             </div>
             <span className={cx("title", "text-uppercase")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
             <CombinationTable />
-            <Row>
-              <Col>
-                <InputHadValue label="- Nguyện vọng 1" value={valueStudent.combination1} />
-              </Col>
-              <Col>
-                <InputHadValue label="- Nguyện vọng 2" value={valueStudent.combination2} />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Môn thể thao" value={valueStudent.sport} />
-              </Col>
-            </Row>
+            <div className="flex gap-4 mt-10">
+              <div className="bg-gray-50 p-6 w-100 rounded-xl border-t-4 border-gray-400 shadow-md">
+                <label className="block fs-1 font-semibold text-gray-700 mb-3">1. Nguyện vọng 1</label>
+                <div>
+                    <label htmlFor="subjectCombination1" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
+                    <div className="flex justify-center items-center rounded border border-gray-300 fs-1 p-3 bg-white">
+                      {valueStudent.combination1}
+                    </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 p-6 w-100 rounded-xl border-t-4 border-gray-400 shadow-md">
+                <label className="block fs-1 font-semibold text-gray-700 mb-3">2. Nguyện vọng 2</label>
+                <div>
+                    <label htmlFor="subjectCombination2" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
+                    <div className="flex justify-center items-center rounded border border-gray-300 fs-1 p-3 bg-white">
+                      {valueStudent.combination2}
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-50 p-6 mt-4 rounded-xl border-t-4 border-gray-400 shadow-md">
+              <label className="block fs-1 font-semibold text-gray-700 mb-3">3. Môn Thể Thao Đã Chọn</label>
+              <div>
+                  <label htmlFor="subjectCombination2" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
+                  <div className="flex justify-center items-center rounded border border-gray-300 fs-1 p-3 bg-white">
+                    {valueStudent.sport}
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
