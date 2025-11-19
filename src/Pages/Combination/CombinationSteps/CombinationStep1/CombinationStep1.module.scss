@@ -32,6 +32,7 @@
   font-family: "Times New Roman", Times, serif;
   padding: 3pc 4pc;
   max-width: 1100px;
+  width: 100%;
   min-height: 1300px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -69,14 +70,15 @@
   flex-direction: column;
   align-items: center;
   line-height: 1;
+  margin-bottom: 1pc;
 
   .first-line {
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 25px;
   }
   .second-line {
     font-weight: bolder;
-    font-size: 35px;
+    font-size: 25px;
   }
 }
 

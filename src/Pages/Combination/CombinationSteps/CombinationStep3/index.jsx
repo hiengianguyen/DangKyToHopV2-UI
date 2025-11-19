@@ -145,31 +145,42 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
 
                 <span className={cx("title", "mt-8")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
                 <CombinationTable />
-                <div className={cx("choose-combination-box")}>
-                  <Row>
-                    <Col>
-                      <Select
-                        label="- Nguyện vọng 1: tổ hợp số"
-                        name="combination1"
-                        valueNoti="Tổ hợp"
-                        selected={valueStudent.combination1}
-                        onChange={(e) => handleChangeCombination(e.target.value, 1)}
-                        opts={combination1}
-                      />
-                    </Col>
-                    <Col>
-                      <Select
-                        label="- Nguyện vọng 2: tổ hợp số"
-                        name="combination2"
-                        valueNoti="Tổ hợp"
-                        selected={valueStudent.combination2}
-                        onChange={(e) => handleChangeCombination(e.target.value, 2)}
-                        opts={combination2}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={"auto"}>
+                <div className="flex gap-4 mt-10">
+                  <div className="bg-gray-50 p-6 w-100 rounded-xl border-t-4 border-gray-400 shadow-md">
+                    <label className="block fs-1 font-semibold text-gray-700 mb-3">1. Nguyện vọng 1</label>
+                    <div>
+                        <label htmlFor="subjectCombination1" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
+                        <Select
+                          label="- Nguyện vọng 1: tổ hợp số"
+                          name="combination1"
+                          valueNoti="Tổ hợp"
+                          selected={valueStudent.combination1}
+                          onChange={(e) => handleChangeCombination(e.target.value, 1)}
+                          opts={combination1}
+                          noLabel
+                        />
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-6 w-100 rounded-xl border-t-4 border-gray-400 shadow-md">
+                    <label className="block fs-1 font-semibold text-gray-700 mb-3">2. Nguyện vọng 2</label>
+                    <div>
+                        <label htmlFor="subjectCombination2" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
+                        <Select
+                          label="- Nguyện vọng 2: tổ hợp số"
+                          name="combination2"
+                          valueNoti="Tổ hợp"
+                          selected={valueStudent.combination2}
+                          onChange={(e) => handleChangeCombination(e.target.value, 2)}
+                          opts={combination2}
+                          noLabel
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 p-6 mt-4 rounded-xl border-t-4 border-gray-400 shadow-md">
+                  <label className="block fs-1 font-semibold text-gray-700 mb-3">3. Môn Thể Thao Đã Chọn</label>
+                  <div>
+                      <label htmlFor="subjectCombination2" className="block fs-3 font-medium text-gray-600">Mã Tổ Hợp (Chọn từ bảng trên):</label>
                       <Select
                         label="- Môn thể thao"
                         name="sport"
@@ -180,9 +191,9 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                           { title: "Bóng chuyền", value: "Bóng chuyền" },
                           { title: "Đá Cầu", value: "Đá Cầu" }
                         ]}
+                        noLabel
                       />
-                    </Col>
-                  </Row>
+                  </div>
                 </div>
               </div>
             </div>

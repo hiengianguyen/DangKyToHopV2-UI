@@ -26,21 +26,24 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
         </div>
         <div className={cx("matriculation")}>
           <Col xs={"auto"}>
-            <InputHadValue label="Số TT ở danh sách trúng tuyển" value={valueStudent.numberMatriculation} />
+            <InputHadValue label="Số TT ở danh sách trúng tuyển" flexColumn={false} value={valueStudent.numberMatriculation} />
           </Col>
         </div>
 
-        <div className={cx("title", "mb-4")}>
+        <div className={cx("title", "mb-20")}>
           <span className={cx("first-line")}>HỒ SƠ HỌC SINH</span>
           <span className={cx("second-line")}>Nhập học năm học 2025 – 2026 </span>
         </div>
 
         <Row>
-          <Col xs={8}>
+          <Col xs={6}>
             <InputHadValue label="Họ và tên" value={valueStudent.fullName} />
           </Col>
           <Col>
             <InputHadValue label="Nam (Nữ)" value={valueStudent.gender} />
+          </Col>
+          <Col>
+            <InputHadValue label="Dân tộc" value={valueStudent.nation} />
           </Col>
         </Row>
         <Row>
@@ -50,17 +53,13 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           <Col>
             <InputHadValue label="Nơi sinh" value={valueStudent.placeOfBirth} />
           </Col>
-          <Col>
-            <InputHadValue label="Dân tộc" value={valueStudent.nation} />
-          </Col>
         </Row>
-
+        <Col xs={"auto"} className="d-flex align-items-end mb-6">
+          <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
+        </Col>
         <Row>
-          <Col xs={"auto"} className="d-flex align-items-end mt-8">
-            <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
-          </Col>
           <Col>
-            <InputHadValue label="KP" value={valueStudent.village} />
+            <InputHadValue label="Khối phố" value={valueStudent.village} />
           </Col>
           <Col>
             <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
@@ -70,10 +69,10 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           <InputHadValue label="Tỉnh" value={valueStudent.city} />
         </Col>
 
-        <Row>
           <Col>
             <InputHadValue label="Số CCCD/Mã Định Danh" value={valueStudent.identification} />
           </Col>
+        <Row>
           <Col>
             <InputHadValue label="Ngày cấp" value={valueStudent.identificationDay} />
           </Col>
@@ -86,10 +85,10 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           <InputHadValue label="Số điện thoại cá nhân" value={valueStudent.phone} />
         </Col>
 
+        <Col>
+          <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+        </Col>
         <Row>
-          <Col>
-            <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-          </Col>
           <Col>
             <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
           </Col>
@@ -98,10 +97,10 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           </Col>
         </Row>
 
+        <Col>
+          <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
+        </Col>
         <Row>
-          <Col>
-            <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
-          </Col>
           <Col>
             <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
           </Col>

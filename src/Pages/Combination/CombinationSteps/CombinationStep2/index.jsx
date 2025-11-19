@@ -132,7 +132,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
               </div>
             </div>
             <Row>
-              <Col xs={8}>
+              <Col xs={6}>
                 <InputHadValue label="Em tên là" value={valueStudent.fullName} />
               </Col>
               <Col>
@@ -140,30 +140,27 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <InputHadValue label="Nam (Nữ)" value={valueStudent.gender} />
                 </Col>
               </Col>
+              <Col>
+                  <InputHadValue label="Dân tộc" value={valueStudent.nation} />
+                </Col>
             </Row>
 
             <Row>
               <Col>
                 <InputHadValue label="Sinh ngày" fontStyle="none" value={valueStudent.dayOfBirth} />
               </Col>
-              <Col>
-                <Col>
-                  <InputHadValue label="Dân tộc" value={valueStudent.nation} />
-                </Col>
-              </Col>
+                
               <Col>
                 <InputHadValue label="Số điện thoại" fontStyle="none" value="0362356747" />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <InputHadValue
-                  label="Địa chỉ thường chú"
-                  value={`KP ${valueStudent.village}, Phường ${valueStudent.commune}, ${valueStudent.city}`}
-                />
-              </Col>
-            </Row>
-
+            
+            <Col>
+              <InputHadValue
+                label="Địa chỉ thường chú"
+                value={`KP ${valueStudent.village}, Phường ${valueStudent.commune}, ${valueStudent.city}`}
+              />
+            </Col>
             <Row>
               <Col>
                 <InputHadValue label="Học sinh lớp 9 Trường THCS" value="THCS Lý Thường Kiệt" />
@@ -172,7 +169,6 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 <InputHadValue label="Xã/Phường" value="Phường Quảng Phú" />
               </Col>
             </Row>
-
             <Col>
               <InputBorder
                 label="Năng khiếu vượt trội (môn/lĩnh vực – nếu có)"
@@ -182,7 +178,6 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 fontStyle="capitalize"
               />
             </Col>
-
             <Col>
               <InputBorder
                 label="Nguyện vọng được vào đội tuyển học sinh giỏi môn (nếu có)"
@@ -192,19 +187,15 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 fontStyle="capitalize"
               />
             </Col>
-
-            <Row>
-              <Col xs={"auto"}>
-                <InputBorder
-                  label="Thành tích thi HSG năm lớp 9 (nếu có) môn"
-                  nonRequired={true}
-                  name="goodSubject"
-                  defaultValue={valueStudent.goodSubject}
-                  fontStyle="capitalize"
-                />
-              </Col>
-            </Row>
-
+            <Col>
+              <InputBorder
+                label="Thành tích thi HSG năm lớp 9 (nếu có) môn"
+                nonRequired={true}
+                name="goodSubject"
+                defaultValue={valueStudent.goodSubject}
+                fontStyle="capitalize"
+              />
+            </Col>
             <Row>
               <Col>
                 <InputBorder
@@ -215,7 +206,6 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   fontStyle="capitalize"
                 />
               </Col>
-
               <Col>
                 <InputBorder
                   label="đạt giải cấp tỉnh: giải"
@@ -226,14 +216,13 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 />
               </Col>
             </Row>
-
-            <Col className="d-flex align-items-end mt-4">
+            <Col className="d-flex align-items-end my-4">
               <span className={cx("avchielement-label")}>
                 Đạt giải TDTT, VN, UPU, KHKT,… do Sở GDĐT tổ chức (hoặc phối hợp tổ chức)(nếu có):{" "}
               </span>
             </Col>
             <Row>
-              <Col xs={"auto"}>
+              <Col>
                 <InputBorder
                   label="giải"
                   name="avchielementLevel"

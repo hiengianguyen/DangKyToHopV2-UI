@@ -23,7 +23,7 @@ function InputBorder({
         name={name}
         onChange={onChange}
         defaultValue={defaultValue}
-        className={cx("inp-man")}
+        className="mt-1 fs-2 block w-full focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none text-gray-900 placeholder-gray-400"
         placeholder={errorValue ? "Vui lòng nhập dữ liệu" : ""}
         style={{ textTransform: fontStyle === "" ? "capitalize" : "" }}
         {...props}

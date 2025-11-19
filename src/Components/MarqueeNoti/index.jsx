@@ -22,7 +22,7 @@ function MarqueeNoti() {
         <div className={cx("block-row")}>
           {listNoti.map((item, index) => (
             <Link key={index} to={"/notifications/" + item.id}>
-              <p className={cx("title-noti")}>{item.title}</p>
+              <p className={cx("title-noti")} title={item.title}>{item.title}</p>
             </Link>
           ))}
         </div>

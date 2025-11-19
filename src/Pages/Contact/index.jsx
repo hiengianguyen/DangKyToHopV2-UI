@@ -31,8 +31,8 @@ function Contact() {
                 <div>
                   <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Phan Thị Tuyết Nhung</h3>
                   <p class="fs-4 font-semibold text-blue-600">Trưởng ban tuyển sinh</p>
-                  <p class="fs-4 font-semibold text-blue-400">Email: phantuyennhung20@gmail.com</p>
-                  <p class="fs-4 font-semibold text-blue-400">SĐT: 0144354565</p>
+                  <p class="fs-4 font-semibold text-blue-600">Email: phantuyennhung20@gmail.com</p>
+                  <p class="fs-4 font-semibold text-blue-600">SĐT: 0144354565</p>
                 </div>
               </div>
             </li>
@@ -45,9 +45,9 @@ function Contact() {
                 />
                 <div>
                   <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Bùi Kim Hà</h3>
-                  <p class="fs-4 font-semibold text-blue-700">Phó ban tuyển sinh</p>
-                  <p class="fs-5 font-semibold text-blue-400">Email: buikimha20@gmail.com</p>
-                  <p class="fs-5 font-semibold text-blue-400">SĐT: 0144354565</p>
+                  <p class="fs-4 font-semibold text-blue-600">Phó ban tuyển sinh</p>
+                  <p class="fs-4 font-semibold text-blue-600">Email: buikimha20@gmail.com</p>
+                  <p class="fs-4 font-semibold text-blue-600">SĐT: 0144354565</p>
                 </div>
               </div>
             </li>
