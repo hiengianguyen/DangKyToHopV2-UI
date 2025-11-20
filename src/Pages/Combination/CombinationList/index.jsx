@@ -43,9 +43,12 @@ function CombinationList() {
 
   useEffect(() => {
     axios
-      .get(API_ENDPOINT + "/combination/submited-list")
+      .get(API_ENDPOINT + "/combination/submited-list", {
+        withCredentials: true,
+      })
       .then((axiosData) => {
         const data = axiosData.data;
+        console.log();
         if (data.isSuccess) {
           setSubmittedList(data.submitedList);
           setSubmittedListMain(data.submitedList);
