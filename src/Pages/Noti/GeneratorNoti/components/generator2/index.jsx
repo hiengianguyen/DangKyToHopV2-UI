@@ -6,9 +6,15 @@ import style from "./generator2.module.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { API_ENDPOINT } from "../../../../../constants";
 const cx = classNames.bind(style);
 
-function Generator2({ show = false, data = {}, btnText = "Tạo thông báo", isUpdate = false }) {
+function Generator2({
+  show = false,
+  data = {},
+  btnText = "Tạo thông báo",
+  isUpdate = false,
+}) {
   const [title, setTitle] = useState("");
   const [fileUrl, setFileUrl] = useState("");
   const [error, setError] = useState("");
@@ -36,20 +42,25 @@ function Generator2({ show = false, data = {}, btnText = "Tạo thông báo", is
     toast
       .promise(
         axios.post(
-          isUpdate ? "http://localhost:4001/notification/update-noti/" + data.id : "http://localhost:4001/notification/create-noti/",
+          isUpdate
+            ? API_ENDPOINT + "/notification/update-noti/" + data.id
+            : API_ENDPOINT + "/notification/create-noti/",
           dataPost
         ),
         {
           loading: "Đang cập nhật...",
           success: <b>Cập nhật thành công!</b>,
-          error: <b>Cập nhật thất bại.</b>
+          error: <b>Cập nhật thất bại.</b>,
         }
       )
       .then((axiosData) => navigator("/notifications/" + axiosData.data.id));
   };
 
   return (
-    <div className={cx("boxSubmit2")} style={{ display: show ? "block" : "none" }}>
+    <div
+      className={cx("boxSubmit2")}
+      style={{ display: show ? "block" : "none" }}
+    >
       <Form className={cx("createNotiForm")} onSubmit={handleSubmit}>
         <Form.Group className={cx("formGroup")}>
           <Form.Label htmlFor="title-noti">Tiêu đề thông báo (*):</Form.Label>
@@ -67,9 +78,13 @@ function Generator2({ show = false, data = {}, btnText = "Tạo thông báo", is
           />
         </Form.Group>
         <Form.Group className={cx("formGroup")}>
-          <Form.Label htmlFor="file-url">Đường dẫn file thông báo (*):</Form.Label>
+          <Form.Label htmlFor="file-url">
+            Đường dẫn file thông báo (*):
+          </Form.Label>
           <div className={cx("inputFileUrl")}>
-            <p className={cx("mb-0", "me-2")}>https://docs.google.com/document/d/e/</p>
+            <p className={cx("mb-0", "me-2")}>
+              https://docs.google.com/document/d/e/
+            </p>
             <Form.Control
               type="text"
               id="file-url"
@@ -90,7 +105,14 @@ function Generator2({ show = false, data = {}, btnText = "Tạo thông báo", is
         </div>
         <div className={cx("fileImportReview")}>
           <h5>File thông báo</h5>
-          <iframe src={fileUrl ? `https://docs.google.com/document/d/e/${fileUrl}` : null} width="100%" height="900" title="Preview" />
+          <iframe
+            src={
+              fileUrl ? `https://docs.google.com/document/d/e/${fileUrl}` : null
+            }
+            width="100%"
+            height="900"
+            title="Preview"
+          />
         </div>
         {error && <span className={cx("formMessage")}>{error}</span>}
         <div className={cx("flexEnd")}>

@@ -13,6 +13,7 @@ import ModalDeleteClass from "./CardClass/ModalDeleteClass";
 import Loading from "../../../Components/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -27,7 +28,7 @@ function Classmate() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/ad/classes")
+      .get(API_ENDPOINT + "/ad/classes")
       .then((res) => {
         const data = res.data;
         if (data.redirect) {
@@ -43,10 +44,15 @@ function Classmate() {
     <div className={cx("wrapper")}>
       {isloading && <Loading title="Đang tải dữ liệu các lớp" />}
       <div className={cx("title-box")}>
-        <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">🏫 Quản lý các lớp học</h2>
-        <p className="fs-3 text-center text-gray-600 fw-medium">Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>
+        <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">
+          🏫 Quản lý các lớp học
+        </h2>
         <p className="fs-3 text-center text-gray-600 fw-medium">
-          số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.
+          Trang này cho phép theo dõi và quản lý thông tin các lớp:
+        </p>
+        <p className="fs-3 text-center text-gray-600 fw-medium">
+          số lượng học sinh, danh sách thành viên, và các thao tác phân chia –
+          điều chỉnh lớp học.
         </p>
       </div>
 
@@ -77,7 +83,11 @@ function Classmate() {
         show={showModal || updateModal?.bol}
         setShow={setShowModal}
         setUpdateModal={setUpdateModal}
-        data={updateModal?.id ? dataClassesPage.classes.find((item) => item.id === updateModal.id) : undefined}
+        data={
+          updateModal?.id
+            ? dataClassesPage.classes.find((item) => item.id === updateModal.id)
+            : undefined
+        }
         isUpdate={updateModal?.bol}
         setDataClassesPage={setDataClassesPage}
       />

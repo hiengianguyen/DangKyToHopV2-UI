@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Loading from "../../../../../Components/Loading";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINT } from "../../../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -16,7 +17,7 @@ const priorityOptions = [
   { title: "Tổ hợp 2", value: "Tổ hợp 2" },
   { title: "Tổ hợp 3", value: "Tổ hợp 3" },
   { title: "Tổ hợp 4", value: "Tổ hợp 4" },
-  { title: "Tổ hợp 5", value: "Tổ hợp 5" }
+  { title: "Tổ hợp 5", value: "Tổ hợp 5" },
 ];
 
 function ModalAddClass({
@@ -25,7 +26,7 @@ function ModalAddClass({
   setUpdateModal = () => {},
   isUpdate = false,
   data = {},
-  setDataClassesPage = () => {}
+  setDataClassesPage = () => {},
 }) {
   const [className, setClassName] = useState("");
   const [teacher, setTeacher] = useState("");
@@ -46,7 +47,12 @@ function ModalAddClass({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!className.trim() || !teacher.trim() || !combination1 || !combination2) {
+    if (
+      !className.trim() ||
+      !teacher.trim() ||
+      !combination1 ||
+      !combination2
+    ) {
       setError("Vui lòng nhập đầy đủ thông tin.");
       return;
     }
@@ -61,21 +67,26 @@ function ModalAddClass({
       name: className,
       teacher: teacher,
       combination1: combination1,
-      combination2: combination2
+      combination2: combination2,
     };
     toast
       .promise(
-        axios.post(isUpdate ? "http://localhost:4001/ad/classes/update/" + data.id : "http://localhost:4001/ad/classes/create", dataClass),
+        axios.post(
+          isUpdate
+            ? API_ENDPOINT + "/ad/classes/update/" + data.id
+            : API_ENDPOINT + "/ad/classes/create",
+          dataClass
+        ),
         {
           loading: "Đang tạo...",
           success: <b>{isUpdate ? "Cập nhật" : "Tạo"} thành công!</b>,
-          error: <b>{isUpdate ? "Cập nhật" : "Tạo"} thất bại.</b>
+          error: <b>{isUpdate ? "Cập nhật" : "Tạo"} thất bại.</b>,
         }
       )
       .then((res) => {
         setIsLoadingModal(false);
         setUpdateModal({
-          bol: false
+          bol: false,
         });
         setShow(false);
         setDataClassesPage((prev) => {
@@ -84,7 +95,7 @@ function ModalAddClass({
               ...prev,
               classes: prev.classes.map((item) => {
                 return item.id === data?.id ? res.data.docAfter : item;
-              })
+              }),
             };
           } else {
             return { ...prev, classes: [...prev.classes, res.data.docAfter] };
@@ -94,14 +105,21 @@ function ModalAddClass({
       });
   };
   return (
-    <Modal show={show} onHide={() => setShow(false)} backdrop="static" keyboard={false}>
+    <Modal
+      show={show}
+      onHide={() => setShow(false)}
+      backdrop="static"
+      keyboard={false}
+    >
       <Form onSubmit={handleSubmit} validated={isValidated}>
         <Modal.Header>
           <Modal.Title>Thêm lớp học</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h2 className="px-4 mt-4 text-center">
-            Nhập đầy đủ thông tin để {isUpdate ? "cập nhật lớp học" : "tạo lớp học mới"} và lưu vào hệ thống quản lý.
+            Nhập đầy đủ thông tin để{" "}
+            {isUpdate ? "cập nhật lớp học" : "tạo lớp học mới"} và lưu vào hệ
+            thống quản lý.
           </h2>
         </Modal.Body>
         <Modal.Body className="position-relative p-4">
@@ -127,7 +145,11 @@ function ModalAddClass({
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Tổ hợp ưu tiên 1</Form.Label>
-            <Form.Select className={cx("v-inp")} value={combination1} onChange={(e) => setCombination1(e.target.value)}>
+            <Form.Select
+              className={cx("v-inp")}
+              value={combination1}
+              onChange={(e) => setCombination1(e.target.value)}
+            >
               <option value="">Chọn tổ hợp ưu tiên</option>
               {priorityOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -138,7 +160,11 @@ function ModalAddClass({
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Tổ hợp ưu tiên 2</Form.Label>
-            <Form.Select className={cx("v-inp")} value={combination2} onChange={(e) => setCombination2(e.target.value)}>
+            <Form.Select
+              className={cx("v-inp")}
+              value={combination2}
+              onChange={(e) => setCombination2(e.target.value)}
+            >
               <option value="">Chọn tổ hợp ưu tiên</option>
               {priorityOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -147,7 +173,9 @@ function ModalAddClass({
               ))}
             </Form.Select>
           </Form.Group>
-          {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+          {error && (
+            <div style={{ color: "red", marginBottom: 8 }}>{error}</div>
+          )}
           {isLoadingModal && (
             <Loading
               title={isUpdate ? "Đang cập nhật" : "Đang tạo lớp"}

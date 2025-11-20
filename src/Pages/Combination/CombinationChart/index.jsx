@@ -9,6 +9,7 @@ import CombinationTarget from "./CombinationTarget";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 function CombinationChart() {
@@ -22,7 +23,7 @@ function CombinationChart() {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/combination/analytics").then((axiosData) => {
+    axios.get(API_ENDPOINT + "/combination/analytics").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setDataChart(axiosData.data);
         setIsLoading(false);

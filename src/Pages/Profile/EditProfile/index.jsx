@@ -12,6 +12,7 @@ import { useAuth } from "../../../Contexts/AuthContext";
 import ImgCropped from "./ImgCropped";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -45,7 +46,7 @@ function EditProfile() {
   }, [user]);
 
   useEffect(() => {
-    axios.get(`http://localhost:4001/me/profile`).then((axiosData) => {
+    axios.get(API_ENDPOINT + "/me/profile").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setUser(axiosData.data.user);
       } else {
@@ -81,7 +82,11 @@ function EditProfile() {
       const user = localStorage.getItem("user");
       const userId = auth?.user?.userId || JSON.parse(user).userId;
       axios
-        .post(`http://localhost:4001/me/profile/update?userId=${userId}`, { fullName: fullName, avatar: imgCropped, phone: phone })
+        .post(API_ENDPOINT + `/me/profile/update?userId=${userId}`, {
+          fullName: fullName,
+          avatar: imgCropped,
+          phone: phone,
+        })
         .then((axiosData) => {
           if (axiosData.data.isSuccess) {
             login(axiosData.data.auth);
@@ -95,10 +100,19 @@ function EditProfile() {
 
   return (
     <BoxRadius>
-      <div className={cx("d-flex", "align-items-between", "justify-content-start")}>
+      <div
+        className={cx("d-flex", "align-items-between", "justify-content-start")}
+      >
         <h4 className={cx("mb-0")}>Chỉnh sửa trang cá nhân</h4>
       </div>
-      <div className={cx("mb-3", "d-flex", "justify-content-center", "align-items-center")}>
+      <div
+        className={cx(
+          "mb-3",
+          "d-flex",
+          "justify-content-center",
+          "align-items-center"
+        )}
+      >
         <div className={cx("card-body-profile", "my-4")}>
           <Form onSubmit={handleSubmit}>
             <div className="d-flex align-items-center gap-4 mb-4">
@@ -106,9 +120,20 @@ function EditProfile() {
               <ImgCropped imgUrl={imgCropped} />
             </div>
             <Form.Group className="my-4">
-              <Form.Control type="file" onChange={(e) => handleChangeImg(e.target.files)} style={{ width: "15pc", fontSize: "16px" }} />
+              <Form.Control
+                type="file"
+                onChange={(e) => handleChangeImg(e.target.files)}
+                style={{ width: "15pc", fontSize: "16px" }}
+              />
             </Form.Group>
-            <div className={cx("profile-dad-name", "info", "mt-8", "flex-column-reverse")}>
+            <div
+              className={cx(
+                "profile-dad-name",
+                "info",
+                "mt-8",
+                "flex-column-reverse"
+              )}
+            >
               <Form.Group className="my-4">
                 <Form.Label>Họ và tên:</Form.Label>
                 <Form.Control
@@ -121,7 +146,9 @@ function EditProfile() {
                   placeholder="Họ và tên"
                   required
                 />
-                <Form.Control.Feedback type="invalid">{errorFullName}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errorFullName}
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group>
                 <Form.Label>Số điện thoại:</Form.Label>
@@ -136,11 +163,24 @@ function EditProfile() {
                   placeholder="Số điện thoại liên hệ"
                   required
                 />
-                <Form.Control.Feedback type="invalid">{errorPhone}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errorPhone}
+                </Form.Control.Feedback>
               </Form.Group>
 
-              <div className={cx("btn-edit", "d-flex", "justify-content-end", "mt-4")}>
-                <Button variant="success" type="submit" style={{ fontSize: "16px" }}>
+              <div
+                className={cx(
+                  "btn-edit",
+                  "d-flex",
+                  "justify-content-end",
+                  "mt-4"
+                )}
+              >
+                <Button
+                  variant="success"
+                  type="submit"
+                  style={{ fontSize: "16px" }}
+                >
                   Cập nhật
                 </Button>
               </div>

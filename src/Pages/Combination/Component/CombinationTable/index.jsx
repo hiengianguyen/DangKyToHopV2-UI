@@ -4,6 +4,7 @@ import Table from "react-bootstrap/esm/Table";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { API_ENDPOINT } from "../../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -11,7 +12,7 @@ function CombinationTable() {
   const [combinations, setCombinations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/combination/table").then((axiosData) => {
+    axios.get(API_ENDPOINT + "/combination/table").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setCombinations(axiosData.data.combinations);
       }

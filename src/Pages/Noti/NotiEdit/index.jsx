@@ -5,6 +5,7 @@ import Generator1 from "../GeneratorNoti/components/generator1";
 import Generator2 from "../GeneratorNoti/components/generator2";
 import BoxRadius from "../../../Components/BoxRadius";
 import Loading from "../../../Components/Loading";
+import { API_ENDPOINT } from "../../../constants";
 
 function NotiEdit() {
   const [notiDetail, setNotiDetail] = useState();
@@ -14,7 +15,7 @@ function NotiEdit() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/notification/edit/" + id)
+      .get(API_ENDPOINT + "/notification/edit/" + id)
       .then((axiosData) => {
         const data = axiosData.data;
         if (data.isSuccess) {

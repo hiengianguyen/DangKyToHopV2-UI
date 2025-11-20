@@ -20,6 +20,7 @@ import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import NonDataImg from "./Component/NonDataImg";
 import BtnSrcollTop from "../../../Components/BtnScrollTop";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -43,7 +44,7 @@ function Students() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/ad/students")
+      .get(API_ENDPOINT + "/ad/students")
       .then((res) => {
         const data = res.data;
         if (data.redirect) {
@@ -67,18 +68,20 @@ function Students() {
 
     data.submittedList = submittedListMain;
     data.statusCheck = false;
-    axios.post("http://localhost:4001/combination/submited/sort", data).then((axiosData) => {
-      const data = axiosData.data;
-      if (data.isSuccess) {
-        setFillter(data.filter);
-        setData((prev) => {
-          return {
-            ...prev,
-            studentList: data.submittedListAfterSort
-          };
-        });
-      }
-    });
+    axios
+      .post(API_ENDPOINT + "/combination/submited/sort", data)
+      .then((axiosData) => {
+        const data = axiosData.data;
+        if (data.isSuccess) {
+          setFillter(data.filter);
+          setData((prev) => {
+            return {
+              ...prev,
+              studentList: data.submittedListAfterSort,
+            };
+          });
+        }
+      });
   };
 
   const handleDragEnd = (event) => {
@@ -87,34 +90,43 @@ function Students() {
     if (!active || !over || over.id === "list") return setShowClassBar(false);
     toast
       .promise(
-        axios.post("http://localhost:4001/ad/student/add/class", {
+        axios.post(API_ENDPOINT + "/ad/student/add/class", {
           studentId: active.id,
-          classId: over.id
+          classId: over.id,
         }),
         {
           loading: "Đang lưu...",
           success: <b>Đã lưu thành công</b>,
-          error: <b>Lưu thất bại</b>
+          error: <b>Lưu thất bại</b>,
         }
       )
       .then(() => {
         setData((prev) => {
           return {
             ...prev,
-            studentList: prev.studentList.filter((item) => item.id !== active.id)
+            studentList: prev.studentList.filter(
+              (item) => item.id !== active.id
+            ),
           };
         });
       });
   };
 
   const handleDragStart = (event) => {
-    setScrollStudent(() => data.studentList.find((item) => item.id === event.active.id));
+    setScrollStudent(() =>
+      data.studentList.find((item) => item.id === event.active.id)
+    );
     setShowClassBar(true);
   };
 
   const visibleTaskLimit = 12;
-  const taskOfPage = data?.studentList?.slice((page - 1) * visibleTaskLimit, page * visibleTaskLimit);
-  const totalPage = Math.ceil((data?.studentList?.length || 0) / visibleTaskLimit);
+  const taskOfPage = data?.studentList?.slice(
+    (page - 1) * visibleTaskLimit,
+    page * visibleTaskLimit
+  );
+  const totalPage = Math.ceil(
+    (data?.studentList?.length || 0) / visibleTaskLimit
+  );
 
   const handleChangePage = (e, value) => {
     setPage(value);
@@ -122,20 +134,32 @@ function Students() {
 
   return (
     <form action="" ref={formRef}>
-      <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+      <DndContext
+        key={String(showClassBar)}
+        onDragEnd={handleDragEnd}
+        onDragStart={handleDragStart}
+      >
         <div className={cx("wrapper")}>
           <div className={cx("title-box")}>
-            <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
+            <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">
+              📋 Danh sách học sinh đã được phê duyệt hồ sơ
+            </h2>
             <p className="fs-3 text-center text-gray-600 fw-medium">
-              Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.
+              Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê
+              duyệt hồ sơ tuyển sinh.
             </p>
-            <p className="fs-3 text-center text-gray-600 fw-medium">Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
+            <p className="fs-3 text-center text-gray-600 fw-medium">
+              Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.
+            </p>
           </div>
           {isloading && <Loading />}
           {!showClassBar && (
             <div className={cx("sort-box")}>
               <h4>Phần lọc:</h4>
-              <FillterBox defaultValue={fillter} handleSubmit={() => handleSubmit(sortList)} />
+              <FillterBox
+                defaultValue={fillter}
+                handleSubmit={() => handleSubmit(sortList)}
+              />
             </div>
           )}
 
@@ -153,8 +177,15 @@ function Students() {
             )}
           </AnimatePresence>
           <div className={cx("content")}>
-            <div className={cx("header-list") + " d-flex align-items-center pb-4 justify-content-between"}>
-              <span className="d-flex justify-content-start ms-4 mt-4">Kéo thả để phân chia lớp</span>
+            <div
+              className={
+                cx("header-list") +
+                " d-flex align-items-center pb-4 justify-content-between"
+              }
+            >
+              <span className="d-flex justify-content-start ms-4 mt-4">
+                Kéo thả để phân chia lớp
+              </span>
               <SortBox handleSubmit={handleSubmit} />
             </div>
             <DroppableList id="list" show={showClassBar}>
@@ -174,7 +205,9 @@ function Students() {
                 <NonDataImg />
               )}
             </DroppableList>
-            <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
+            <DragOverlay>
+              {scrollStudent && <DragOverPlayStudent data={scrollStudent} />}
+            </DragOverlay>
           </div>
           <div className="flex justify-center my-4 text-blue-600">
             <Link to="/ad/classmate" className="flex gap-2 items-center">
@@ -184,7 +217,14 @@ function Students() {
           </div>
 
           <Stack spacing={2} className="items-center mb-10">
-            <Pagination count={totalPage} size="large" color="primary" variant="outlined" shape="rounded" onChange={handleChangePage} />
+            <Pagination
+              count={totalPage}
+              size="large"
+              color="primary"
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChangePage}
+            />
           </Stack>
         </div>
       </DndContext>

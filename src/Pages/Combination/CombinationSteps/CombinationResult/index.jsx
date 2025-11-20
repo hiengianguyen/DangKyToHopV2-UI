@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Tabs from "react-bootstrap/esm/Tabs";
 import Container from "react-bootstrap/esm/Container";
+import { API_ENDPOINT } from "../../../../constants";
 
 function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
   const navigator = useNavigate();
@@ -23,7 +24,7 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
     valueStudent.userId = auth.user.userId;
     toast
       .promise(
-        axios.post("http://localhost:4001/combination/submited", valueStudent),
+        axios.post(API_ENDPOINT + "/combination/submited", valueStudent),
         {
           loading: "Đang gữi đi hồ sơ...",
           success: <b>Gữi thành công!</b>,

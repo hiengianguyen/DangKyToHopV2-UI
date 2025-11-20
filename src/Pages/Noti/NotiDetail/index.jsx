@@ -5,6 +5,7 @@ import BoxRadius from "../../../Components/BoxRadius";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../../../Components/Loading";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -20,7 +21,7 @@ function NotiDetail() {
   }, [notiDetail]);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/notification/detail/" + id).then((axiosData) => {
+    axios.get(API_ENDPOINT + "/notification/detail/" + id).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setNotiDetail(axiosData.data.notification);
         setLoading(false);
@@ -37,10 +38,14 @@ function NotiDetail() {
         <div className={cx("content")}>
           <h4 className={cx("mb-2", "text-center")}>Thông báo</h4>
           <div className={cx("container", "mt-4")}>
-            <h3 className={cx("text-center", "fs-1 fw-bolder mb-4")}>{notiDetail.title}</h3>
+            <h3 className={cx("text-center", "fs-1 fw-bolder mb-4")}>
+              {notiDetail.title}
+            </h3>
             {notiDetail.type === "text" ? (
               <>
-                <p className="text-justify fs-2 fw-medium">{notiDetail.message}</p>
+                <p className="text-justify fs-2 fw-medium">
+                  {notiDetail.message}
+                </p>
                 <div className={cx("timer", "d-flex", "justify-content-end")}>
                   <p>Thông báo lúc: {notiDetail.publishAt}</p>
                 </div>{" "}
@@ -55,7 +60,16 @@ function NotiDetail() {
                 >
                   Đường dẫn file chi tiết
                 </a>
-                <div className={cx("file-container", "mt-3", "d-flex", "justify-content-center", "shadow", "p-4")}>
+                <div
+                  className={cx(
+                    "file-container",
+                    "mt-3",
+                    "d-flex",
+                    "justify-content-center",
+                    "shadow",
+                    "p-4"
+                  )}
+                >
                   <iframe
                     title={notiDetail.title}
                     src={`https://docs.google.com/document/d/e/${notiDetail.fileUrl}?embedded=true`}

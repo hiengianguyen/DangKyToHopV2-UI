@@ -2,16 +2,26 @@ import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/esm/Modal";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { API_ENDPOINT } from "../../../../constants";
 
-function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, data = {} }) {
+function ModalRejectStudent({
+  setStudents = () => {},
+  setShowModal = () => {},
+  data = {},
+}) {
   const handleRejectSubmitted = (id) => {
     toast
-      .promise(axios.post("http://localhost:4001/combination/submited-reject/" + id), {
-        loading: "Đang huỷ phê duyệt...",
-        success: <b>Huỷ phê duyệt thành công!</b>,
-        error: <b>Huỷ phê duyệt thất bại.</b>
-      })
-      .then(() => setStudents((prev) => prev.filter((item) => item.userId !== id)))
+      .promise(
+        axios.post(API_ENDPOINT + "/combination/submited-reject/" + id),
+        {
+          loading: "Đang huỷ phê duyệt...",
+          success: <b>Huỷ phê duyệt thành công!</b>,
+          error: <b>Huỷ phê duyệt thất bại.</b>,
+        }
+      )
+      .then(() =>
+        setStudents((prev) => prev.filter((item) => item.userId !== id))
+      )
       .finally(() => setShowModal(false));
   };
 
@@ -27,7 +37,12 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
             <img
               src={data.avatar}
               className="border"
-              style={{ width: "70px", height: "70px", objectFit: "cover", borderRadius: "50%" }}
+              style={{
+                width: "70px",
+                height: "70px",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}
               alt=""
             />
             <span className="fs-1 text-gray-900 mt-2" title="Họ và Tên">
@@ -55,12 +70,16 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
             <div className="flex gap-4 mt-4">
               <span>- Điểm thi tuyển: </span>
               <span className="fs-2 text-green-700  flex items-center fw-bolder">
-                {Number(data.mathPoint) + Number(data.literaturePoint) + Number(data.englishPoint)}
+                {Number(data.mathPoint) +
+                  Number(data.literaturePoint) +
+                  Number(data.englishPoint)}
               </span>
             </div>
             <div className="flex flex-col">
               <span>- Diện mồ côi, hộ nghèo, hộ cận nghèo: </span>
-              <span className="ms-4 fw-bold">{data.priorityGroup || "Không có"}</span>
+              <span className="ms-4 fw-bold">
+                {data.priorityGroup || "Không có"}
+              </span>
             </div>
             <div className="flex gap-4">
               <span>- Thành tích thi HSG môn: </span>
@@ -68,20 +87,28 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
             </div>
             <div className="ms-4 flex gap-4">
               <span>+ cấp Huyện/TP: </span>
-              <span className="fw-bold">{data.goodSubjectDistrict || "Không có"}</span>
+              <span className="fw-bold">
+                {data.goodSubjectDistrict || "Không có"}
+              </span>
             </div>
             <div className="ms-4 flex gap-4">
               <span>+ cấp Tỉnh: </span>
-              <span className="fw-bold">{data.goodSubjectProvince || "Không có"}</span>
+              <span className="fw-bold">
+                {data.goodSubjectProvince || "Không có"}
+              </span>
             </div>
             <span>- Đạt giải TDTT, VN, UPU, KHKT,… : </span>
             <div className="ms-4 flex gap-4">
               <span>+ đạt giải: </span>
-              <span className="fw-bold">{data.avchielementLevel || "Không có"}</span>
+              <span className="fw-bold">
+                {data.avchielementLevel || "Không có"}
+              </span>
             </div>
             <div className="ms-4 flex gap-4">
               <span>+ lĩnh vực: </span>
-              <span className="fw-bold">{data.avchielementGroup || "Không có"}</span>
+              <span className="fw-bold">
+                {data.avchielementGroup || "Không có"}
+              </span>
             </div>
             <span>- Mắc bệnh: </span>
             <ol className="list-decimal ps-4 ms-10">
@@ -111,10 +138,18 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" className="fs-3" onClick={() => handleRejectSubmitted(data.userId)}>
+        <Button
+          variant="danger"
+          className="fs-3"
+          onClick={() => handleRejectSubmitted(data.userId)}
+        >
           Huỷ duyệt
         </Button>
-        <Button variant="secondary" onClick={() => setShowModal(false)} className="fs-3">
+        <Button
+          variant="secondary"
+          onClick={() => setShowModal(false)}
+          className="fs-3"
+        >
           Huỷ
         </Button>
       </Modal.Footer>
