@@ -62,9 +62,9 @@ function MainNoti() {
       {loading && <Loading title="Đang tải thông báo" />}
       <div className={cx("card-body", "p-0")}>
         <div className={cx("content")}>
-          <div className={cx("text-center")}>
+          <div className={cx("text-center mb-4")}>
             <h4 className={cx("mb-2", "text-center fs-1")}>Danh sách thông báo</h4>
-            <p style={{ fontSize: "16px", color: "#666" }}>
+            <p style={{ fontSize: "20px", color: "#666" }}>
               Đây là những thông báo được gửi đến tất cả học sinh để cập nhật thông tin quan trọng về tuyển sinh và các hoạt động học tập.
             </p>
           </div>
