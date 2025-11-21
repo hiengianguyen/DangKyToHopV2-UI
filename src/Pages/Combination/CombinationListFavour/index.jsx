@@ -105,7 +105,7 @@ function CombinationListFavour() {
     <BoxRadius>
       {isLoading && <Loading />}
       <div className="d-flex justify-content-between" style={{ height: "3pc" }}>
-        <h2>Danh sách hồ sơ đã lưu</h2>
+        <h1 className="fs-1 fw-bold">Danh sách hồ sơ đã lưu</h1>
         <DropdownButton drop="start" size="lg" title="Xuất file Excel">
           <Dropdown.Item className="fs-2 p-3" href="http://localhost:4001/file/excel/submited-list">
             Tất cả hồ sơ

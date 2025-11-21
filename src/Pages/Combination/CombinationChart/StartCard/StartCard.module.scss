@@ -1,0 +1,7 @@
+.wrapper {
+    transition: all .3s ease;
+    &:hover {
+        box-shadow: 1px 5px 7px #b1b1b1 !important;
+        transition: all .3s ease;
+    }
+}

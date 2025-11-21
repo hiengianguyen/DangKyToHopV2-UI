@@ -32,6 +32,7 @@ import Classmate from "../Pages/ClassDivide/Classmate";
 import ClassDetail from "../Pages/ClassDivide/ClassDetail";
 import SchoolLayout from "../Components/layouts/SchoolLayout";
 import HomeLayout from "../Components/layouts/HomeLayout";
+import CombinationStat from "../Pages/Combination/CombinationStat";
 
 const publicRoutes = [
   {
@@ -101,7 +102,14 @@ const privateRoutes = [
     component: CombinationChart,
     title: "Thống Kê",
     icon: <FontAwesomeIcon className="" icon={faChartSimple} />,
-    roles: ["student", "manager"]
+    roles: ["student"]
+  },
+  {
+    path: "/combination/stat",
+    component: CombinationStat,
+    title: "Thống Kê",
+    icon: <FontAwesomeIcon className="" icon={faChartSimple} />,
+    roles: ["manager"]
   },
   {
     path: "/combination/detail",
