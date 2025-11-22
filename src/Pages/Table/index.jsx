@@ -5,6 +5,7 @@ import axios from "axios";
 import Loading from "../../Components/Loading";
 import BoxRadius from "../../Components/BoxRadius";
 import ModalEditTable from "./Modal";
+import { API_ENDPOINT } from "../../constants";
 
 const cx = classNames.bind(style);
 
@@ -16,7 +17,7 @@ function TablePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/combination/table")
+      .get(API_ENDPOINT + "/combination/table")
       .then((axiosData) => {
         if (axiosData.data.isSuccess) {
           setDataTable(axiosData.data);

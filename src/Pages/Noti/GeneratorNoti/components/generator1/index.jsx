@@ -6,9 +6,15 @@ import style from "./generator1.module.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { API_ENDPOINT } from "../../../../../constants";
 const cx = classNames.bind(style);
 
-function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isUpdate = false }) {
+function Generator1({
+  show = true,
+  data = {},
+  btnText = "Tạo thông báo",
+  isUpdate = false,
+}) {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -37,20 +43,25 @@ function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isU
     toast
       .promise(
         axios.post(
-          isUpdate ? "http://localhost:4001/notification/update-noti/" + data.id : "http://localhost:4001/notification/create-noti/",
+          isUpdate
+            ? API_ENDPOINT + "/notification/update-noti/" + data.id
+            : API_ENDPOINT + "/notification/create-noti/",
           dataPost
         ),
         {
           loading: "Đang tiến hành...",
           success: <b>Thành công!</b>,
-          error: <b>Thất bại.</b>
+          error: <b>Thất bại.</b>,
         }
       )
       .then(() => navigator("/notifications"));
   };
 
   return (
-    <div className={cx("boxSubmit1")} style={{ display: show ? "block" : "none" }}>
+    <div
+      className={cx("boxSubmit1")}
+      style={{ display: show ? "block" : "none" }}
+    >
       <Form className={cx("createNotiForm")} onSubmit={handleSubmit}>
         <Form.Group className={cx("formGroup")}>
           <Form.Label htmlFor="signin-phone">Tiêu đề thông báo (*):</Form.Label>
@@ -68,7 +79,9 @@ function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isU
           />
         </Form.Group>
         <Form.Group className={cx("formGroup")}>
-          <Form.Label htmlFor="noti-message">Nội dung thông báo (*):</Form.Label>
+          <Form.Label htmlFor="noti-message">
+            Nội dung thông báo (*):
+          </Form.Label>
           <Form.Control
             as="textarea"
             name="message"
