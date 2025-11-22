@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CombinationResult from "../CombinationSteps/CombinationResult/index.jsx";
 import Loading from "../../../Components/Loading/index.jsx";
+import { API_ENDPOINT } from "../../../constants/index.js";
 
 const cx = classNames.bind(style);
 
@@ -22,18 +23,20 @@ function RegisterCombination() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/combination/submit-combination").then((axiosData) => {
-      const data = axiosData.data;
-      if (data.isSuccess) {
-        if (data.submitedDetail) {
-          setValueStudent(data.submitedDetail);
+    axios
+      .get(API_ENDPOINT + "/combination/submit-combination")
+      .then((axiosData) => {
+        const data = axiosData.data;
+        if (data.isSuccess) {
+          if (data.submitedDetail) {
+            setValueStudent(data.submitedDetail);
+          }
+          setDataOfPage(data);
+          setIsLoading(false);
+        } else {
+          navigator("/auth/signin");
         }
-        setDataOfPage(data);
-        setIsLoading(false);
-      } else {
-        navigator("/auth/signin");
-      }
-    });
+      });
   }, [navigator]);
 
   const renderStep = () => {
@@ -49,13 +52,36 @@ function RegisterCombination() {
           />
         );
       case 2:
-        return <CombinationStep2 valueStudent={valueStudent} setValueStudent={setValueStudent} setCurrPage={setCurrPage} />;
+        return (
+          <CombinationStep2
+            valueStudent={valueStudent}
+            setValueStudent={setValueStudent}
+            setCurrPage={setCurrPage}
+          />
+        );
       case 3:
-        return <CombinationStep3 valueStudent={valueStudent} setValueStudent={setValueStudent} setCurrPage={setCurrPage} />;
+        return (
+          <CombinationStep3
+            valueStudent={valueStudent}
+            setValueStudent={setValueStudent}
+            setCurrPage={setCurrPage}
+          />
+        );
       case 4:
-        return <CombinationStep4 valueStudent={valueStudent} setValueStudent={setValueStudent} setCurrPage={setCurrPage} />;
+        return (
+          <CombinationStep4
+            valueStudent={valueStudent}
+            setValueStudent={setValueStudent}
+            setCurrPage={setCurrPage}
+          />
+        );
       default:
-        return <CombinationResult valueStudent={valueStudent} setCurrPage={setCurrPage} />;
+        return (
+          <CombinationResult
+            valueStudent={valueStudent}
+            setCurrPage={setCurrPage}
+          />
+        );
     }
   };
 

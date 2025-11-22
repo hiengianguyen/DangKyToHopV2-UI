@@ -4,6 +4,7 @@ import Badge from "react-bootstrap/Badge";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_ENDPOINT } from "../../../../../constants";
 
 function ModalDeleteClass({
   show = false,
@@ -42,8 +43,8 @@ function ModalDeleteClass({
           .promise(
             axios.post(
               classInfo.studentCount !== 0
-                ? "http://localhost:4001/ad/classes/delete/m"
-                : "http://localhost:4001/ad/classes/delete",
+                ? API_ENDPOINT + "/ad/classes/delete/m"
+                : API_ENDPOINT + "/ad/classes/delete",
               {
                 id: classInfo.id,
               }

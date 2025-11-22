@@ -10,6 +10,7 @@ import Loading from "../../../Components/Loading";
 import toast from "react-hot-toast";
 import Modal from "react-bootstrap/esm/Modal";
 import Button from "react-bootstrap/esm/Button";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -30,7 +31,7 @@ function MainNoti() {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/notification").then((axiosData) => {
+    axios.get(API_ENDPOINT + "/notification").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setListNoti(axiosData.data.notifications);
         setNotiSubmittedStatus(axiosData.data.notiSubmittedStatus);
@@ -44,10 +45,10 @@ function MainNoti() {
 
   const deleteNoti = (id) => {
     toast
-      .promise(axios.get("http://localhost:4001/notification/delete/m/" + id), {
+      .promise(axios.get(API_ENDPOINT + "/notification/delete/m/" + id), {
         loading: "Đang xoá...",
         success: <b>Xoá thành công!</b>,
-        error: <b>Xoá thất bại.</b>
+        error: <b>Xoá thất bại.</b>,
       })
       .then((axiosData) => {
         setListNoti((prev) => prev.filter((item) => item.id !== id));
@@ -69,19 +70,32 @@ function MainNoti() {
             </p>
           </div>
           {role === "manager" ? (
-            <div className={cx("d-flex", "justify-content-end", "container", "mb-2", "btn-gen-noti")}>
+            <div
+              className={cx(
+                "d-flex",
+                "justify-content-end",
+                "container",
+                "mb-2",
+                "btn-gen-noti"
+              )}
+            >
               <Link to="/notification/generator">
-                <FontAwesomeIcon icon={faPlus} className="me-1" /> Tạo thông báo mới
+                <FontAwesomeIcon icon={faPlus} className="me-1" /> Tạo thông báo
+                mới
               </Link>
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
-            {JSON.stringify(notiSubmittedStatus) !== '{}' && (
+            {JSON.stringify(notiSubmittedStatus) !== "{}" && (
               <div className={cx("noti-box", "rounded-4")}>
                 <h5 className={cx("title", "pe-4 fs-2")}>
-                  <Link to={"/combination/detail"}>{notiSubmittedStatus.title}</Link>
+                  <Link to={"/combination/detail"}>
+                    {notiSubmittedStatus.title}
+                  </Link>
                 </h5>
-                <p className={cx("timer", "mb-0")}>Tạo lúc: {notiSubmittedStatus.publishAt}</p>
+                <p className={cx("timer", "mb-0")}>
+                  Tạo lúc: {notiSubmittedStatus.publishAt}
+                </p>
               </div>
             )}
             {listNoti ? (
@@ -90,7 +104,9 @@ function MainNoti() {
                   <h5 className={cx("title", "pe-4 fs-2")}>
                     <Link to={"/notifications/" + item.id}>{item.title}</Link>
                   </h5>
-                  <p className={cx("timer", "mb-0")}>Tạo lúc: {item.publishAt}</p>
+                  <p className={cx("timer", "mb-0")}>
+                    Tạo lúc: {item.publishAt}
+                  </p>
                   {role === "manager" ? (
                     <div
                       className={cx("list-icon")}
@@ -117,7 +133,7 @@ function MainNoti() {
                       {showListAction && (
                         <ul
                           className={cx("opt-noti", "shadow", {
-                            hidden: listAction !== item.id
+                            hidden: listAction !== item.id,
                           })}
                         >
                           <Link to={"/notifications/edit/" + item.id}>
@@ -138,8 +154,19 @@ function MainNoti() {
                 </div>
               ))
             ) : (
-              <div className={cx("img-box-not-noti", "mt-4", "d-flex", "align-items-center", "flex-column")}>
-                <img src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752162309/error_xpgplu.png" alt="not data" />
+              <div
+                className={cx(
+                  "img-box-not-noti",
+                  "mt-4",
+                  "d-flex",
+                  "align-items-center",
+                  "flex-column"
+                )}
+              >
+                <img
+                  src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752162309/error_xpgplu.png"
+                  alt="not data"
+                />
                 <div className={cx("text-center")}>
                   <h6>Chưa có thông báo</h6>
                 </div>
@@ -159,10 +186,18 @@ function MainNoti() {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" className="fs-3" onClick={() => setShowModal(false)}>
+          <Button
+            variant="secondary"
+            className="fs-3"
+            onClick={() => setShowModal(false)}
+          >
             Huỷ
           </Button>
-          <Button variant="danger" className="fs-3" onClick={() => deleteNoti(notiDelete)}>
+          <Button
+            variant="danger"
+            className="fs-3"
+            onClick={() => deleteNoti(notiDelete)}
+          >
             Xoá
           </Button>
         </Modal.Footer>

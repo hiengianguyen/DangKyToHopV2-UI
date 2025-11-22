@@ -6,6 +6,7 @@ import Loading from "../../Components/Loading";
 import BoxRadius from "../../Components/BoxRadius";
 import Table from "react-bootstrap/Table";
 import ModalEditTable from "./Modal";
+import { API_ENDPOINT } from "../../constants";
 
 const cx = classNames.bind(style);
 
@@ -17,7 +18,7 @@ function TablePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/combination/table")
+      .get(API_ENDPOINT + "/combination/table")
       .then((axiosData) => {
         if (axiosData.data.isSuccess) {
           setCombinations(axiosData.data.combinations);
@@ -56,7 +57,10 @@ function TablePage() {
                     <td>{item?.compulsorySubjects.join(", ")}</td>
                     <td>{item?.classesCount}</td>
                     <td>
-                      <div className="btn btn-secondary fs-3" onClick={() => handleEditCombination(item?.id)}>
+                      <div
+                        className="btn btn-secondary fs-3"
+                        onClick={() => handleEditCombination(item?.id)}
+                      >
                         Chỉnh sửa
                       </div>
                     </td>

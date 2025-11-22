@@ -11,6 +11,7 @@ import NonDataImg from "../Students/Component/NonDataImg";
 import Loading from "../../../Components/Loading";
 import DropdownButton from "react-bootstrap/esm/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -22,7 +23,9 @@ function ClassDetail() {
   const [students, setStudents] = useState([]);
   const [sortList, setSortList] = useState(null);
   const [isloading, setIsLoading] = useState(true);
-  const [messageNonData, setMessageNonData] = useState("Hiện chưa có học sinh được xếp vào lớp này");
+  const [messageNonData, setMessageNonData] = useState(
+    "Hiện chưa có học sinh được xếp vào lớp này"
+  );
 
   const { id } = useParams();
 
@@ -32,7 +35,7 @@ function ClassDetail() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/ad/class/" + id)
+      .get(API_ENDPOINT + "/ad/class/" + id)
       .then((res) => {
         setStudents(res.data.students);
         setClassDetail(res.data.classDetail);
@@ -51,7 +54,7 @@ function ClassDetail() {
     }
 
     data.studentList = studentListMain;
-    axios.post("http://localhost:4001/ad/student/sort", data).then((axiosData) => {
+    axios.post(API_ENDPOINT + "/ad/student/sort", data).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setStudents(axiosData.data.studentListAfterSort);
         setMessageNonData("Không có học sinh nào trong lớp theo bộ lọc");
@@ -62,15 +65,15 @@ function ClassDetail() {
   const handleExportExcel = (data) => {
     axios
       .post(
-        "http://localhost:4001/file/excel/class-detail",
+        API_ENDPOINT + "/file/excel/class-detail",
         { submittedList: data },
         {
-          responseType: "arraybuffer"
+          responseType: "arraybuffer",
         }
       )
       .then((res) => {
         const blob = new Blob([res.data], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         });
 
         const url = window.URL.createObjectURL(blob);
@@ -97,21 +100,31 @@ function ClassDetail() {
           <div className="flex flex-col">
             <h1 className="fs-1 fw-bolder">Lớp {classDetail.name}</h1>
             <h2 className="fs-1">
-              Giáo viên chủ nhiệm: <i className="fw-bolder">{classDetail.teacher}</i>
+              Giáo viên chủ nhiệm:{" "}
+              <i className="fw-bolder">{classDetail.teacher}</i>
             </h2>
           </div>
           <DropdownButton drop="start" size="lg" title="Xuất file Excel">
-            <Dropdown.Item className="fs-4 p-3" onClick={() => handleExportExcel(studentListMain)}>
+            <Dropdown.Item
+              className="fs-4 p-3"
+              onClick={() => handleExportExcel(studentListMain)}
+            >
               Tất cả học sinh
             </Dropdown.Item>
-            <Dropdown.Item className="fs-4 p-3" onClick={() => handleExportExcel(students)}>
+            <Dropdown.Item
+              className="fs-4 p-3"
+              onClick={() => handleExportExcel(students)}
+            >
               Học sinh đã lọc
             </Dropdown.Item>
           </DropdownButton>
         </div>
 
         <form ref={formRef}>
-          <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
+          <FillterBoxDetail
+            handleSubmit={() => handleSubmit(sortList)}
+            handleSubmitHaveSort={handleSubmit}
+          />
         </form>
 
         <div className={cx("list-student", "mb-10")}>
@@ -119,7 +132,11 @@ function ClassDetail() {
             students.map((item, index) => (
               <div className="d-flex align-items-center" key={index}>
                 <span className={cx("count")}>{index + 1}</span>
-                <CardStudent data={item} setStudents={setStudents} classDetail={classDetail} />
+                <CardStudent
+                  data={item}
+                  setStudents={setStudents}
+                  classDetail={classDetail}
+                />
               </div>
             ))
           ) : (

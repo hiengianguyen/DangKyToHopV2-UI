@@ -10,6 +10,7 @@ import Loading from "../../../../../Components/Loading";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { API_ENDPOINT } from "../../../../../constants";
 
 const cx = classNames.bind(style);
 
@@ -19,7 +20,7 @@ function BarDivideClass({ show = false }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/ad/classes")
+      .get(API_ENDPOINT + "/ad/classes")
       .then((res) => {
         const data = res.data;
         if (data.redirect) {
@@ -53,10 +54,21 @@ function BarDivideClass({ show = false }) {
             ))
           ) : (
             <div className="d-flex flex-column align-items-center">
-              <img src="/empty-folder.png" alt="" style={{ height: "10pc", width: "10pc", pointerEvents: "none", userSelect: "none" }} />
+              <img
+                src="/empty-folder.png"
+                alt=""
+                style={{
+                  height: "10pc",
+                  width: "10pc",
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}
+              />
               <div className="d-flex text-center flex-column">
                 <h3>Không có lớp học</h3>
-                <i className="text-secondary">Hiệi tại chưa có lớp học trong hàng đợi</i>
+                <i className="text-secondary">
+                  Hiệi tại chưa có lớp học trong hàng đợi
+                </i>
                 <Link to="/ad/classmate" className="text-primary">
                   Quản lí lớp học
                   <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
@@ -65,7 +77,14 @@ function BarDivideClass({ show = false }) {
             </div>
           )}
         </Row>
-        {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
+        {isLoadingList && (
+          <Loading
+            height="100%"
+            position="absolute"
+            color="rgb(244 244 244)"
+            zIndex="9998"
+          />
+        )}
       </div>
     </div>
   );
