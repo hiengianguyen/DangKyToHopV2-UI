@@ -36,7 +36,7 @@ function TablePage() {
     <BoxRadius>
       <div className={cx("wrapper")}>
         {isLoading && <Loading title="Đang tải tổ hợp" />}
-        <h3 className="mb-4">Chỉnh sửa tổ hợp</h3>
+        <h1 className="mb-4 fs-1 fw-bold">Chỉnh sửa tổ hợp</h1>
         <div className="table-combination">
           <Table striped className={cx("text-center", "table-edit")}>
             <thead>
