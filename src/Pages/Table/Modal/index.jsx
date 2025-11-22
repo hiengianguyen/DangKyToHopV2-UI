@@ -51,7 +51,7 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, 
       })
       .then((res) => {
         setCombinations((prev) => {
-          return prev.map((item) => (item.id === id ? res.data.docAfter : item));
+          return {...prev,combinations: prev.combinations.map((item) => (item.id === id ? res.data.docAfter : item))};
         });
       })
       .finally(() => {
