@@ -41,13 +41,14 @@ function Signup() {
   }, []);
 
   useEffect(() => {
-    if (!auth.isAuthenticated) return;
-    if (auth.role === "student") {
-      navigator("/combination/register");
-    } else {
-      navigator("/combination/submitted/list");
+    if (auth.isAuthenticated) {
+      if (auth.user.role === "student") {
+        navigator("/combination/register");
+      } else {
+        navigator("/combination/submitted/list");
+      }
     }
-  }, [auth, navigator]);
+  }, [auth]);
 
   useEffect(() => {
     setErrorFullName("");

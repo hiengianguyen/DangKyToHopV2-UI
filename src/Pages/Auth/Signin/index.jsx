@@ -24,13 +24,19 @@ const Desktop = ({ children }) => {
 };
 
 function Signin() {
-  const { login } = useAuth();
+  const { login, auth } = useAuth();
   const navigator = useNavigate();
   const [phone, setPhone] = useState("");
   const [errorPhone, setErrorPhone] = useState("");
   const [password, setPassword] = useState("");
   const [errorPass, setErrorPass] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    if(auth.isAuthenticated) {
+      navigator('/');
+    }
+  }, [auth])
 
   useEffect(() => {
     document.title = "Đăng ký tổ hợp | Đăng nhập";
