@@ -44,15 +44,10 @@ function Classmate() {
     <div className={cx("wrapper")}>
       {isloading && <Loading title="Đang tải dữ liệu các lớp" />}
       <div className={cx("title-box")}>
-        <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">
-          🏫 Quản lý các lớp học
-        </h2>
+        <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">🏫 Quản lý các lớp học</h2>
+        <p className="fs-3 text-center text-gray-600 fw-medium">Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>
         <p className="fs-3 text-center text-gray-600 fw-medium">
-          Trang này cho phép theo dõi và quản lý thông tin các lớp:
-        </p>
-        <p className="fs-3 text-center text-gray-600 fw-medium">
-          số lượng học sinh, danh sách thành viên, và các thao tác phân chia –
-          điều chỉnh lớp học.
+          số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.
         </p>
       </div>
 
@@ -83,11 +78,7 @@ function Classmate() {
         show={showModal || updateModal?.bol}
         setShow={setShowModal}
         setUpdateModal={setUpdateModal}
-        data={
-          updateModal?.id
-            ? dataClassesPage.classes.find((item) => item.id === updateModal.id)
-            : undefined
-        }
+        data={updateModal?.id ? dataClassesPage.classes.find((item) => item.id === updateModal.id) : undefined}
         isUpdate={updateModal?.bol}
         setDataClassesPage={setDataClassesPage}
       />
