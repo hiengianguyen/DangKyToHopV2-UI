@@ -63,10 +63,10 @@ function CombinationStep4R({ valueStudent = {} }) {
             <InputHadValue label="Tỉnh" value={valueStudent.city} />
           </Col>
           <p className={cx("place-label", "my-6 fw-bolder")}>Thông tin cha mẹ:</p>
-          <Col>
-            <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-          </Col>
           <Row>
+            <Col>
+              <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+            </Col>
             <Col>
               <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
             </Col>
@@ -74,10 +74,10 @@ function CombinationStep4R({ valueStudent = {} }) {
               <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
             </Col>
           </Row>
-          <Col>
-            <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
-          </Col>
           <Row>
+            <Col>
+              <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
+            </Col>
             <Col>
               <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
             </Col>
@@ -147,7 +147,7 @@ function CombinationStep4R({ valueStudent = {} }) {
               name="difficultSituation"
               value={valueStudent.difficultSituation}
             />
-          </Col>          
+          </Col>
           <Col>
             <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
           </Col>

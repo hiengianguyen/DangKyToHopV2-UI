@@ -69,9 +69,9 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           <InputHadValue label="Tỉnh" value={valueStudent.city} />
         </Col>
 
-          <Col>
-            <InputHadValue label="Số CCCD/Mã Định Danh" value={valueStudent.identification} />
-          </Col>
+        <Col>
+          <InputHadValue label="Số CCCD/Mã Định Danh" value={valueStudent.identification} />
+        </Col>
         <Row>
           <Col>
             <InputHadValue label="Ngày cấp" value={valueStudent.identificationDay} />
@@ -85,10 +85,10 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           <InputHadValue label="Số điện thoại cá nhân" value={valueStudent.phone} />
         </Col>
 
-        <Col>
-          <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-        </Col>
         <Row>
+          <Col>
+            <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+          </Col>
           <Col>
             <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
           </Col>
@@ -97,10 +97,10 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
           </Col>
         </Row>
 
-        <Col>
-          <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
-        </Col>
         <Row>
+          <Col>
+            <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
+          </Col>
           <Col>
             <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
           </Col>
