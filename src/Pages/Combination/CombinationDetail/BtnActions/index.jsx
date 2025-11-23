@@ -33,13 +33,7 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
   };
 
   const handleRedirectPDF = () => {
-    if (Number(keyPage) < 3) {
-      window.open("/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage), "_blank");
-    } else {
-      toast("Chức năng đang hoàn thiện...", {
-        icon: "💙"
-      });
-    }
+    window.open("/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage), "_blank");
   };
   return (
     <div>
