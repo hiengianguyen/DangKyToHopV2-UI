@@ -7,6 +7,7 @@ import axios from "axios";
 import Loading from "../../../Components/Loading";
 import toast from "react-hot-toast";
 import { API_ENDPOINT } from "../../../constants";
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(style);
 
 function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, setCombinations = () => {} }) {
@@ -20,6 +21,7 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, 
   const [compulsorySubject3, setCompulsorySubject3] = useState("");
   const [classCount, setClassCount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigator = useNavigate();
 
   useEffect(() => {
     if (!combination) return;
@@ -54,6 +56,7 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, 
         setCombinations((prev) => {
           return { ...prev, combinations: prev.combinations.map((item) => (item.id === id ? res.data.docAfter : item)) };
         });
+        navigator(0);
       })
       .finally(() => {
         setIsLoading(false);

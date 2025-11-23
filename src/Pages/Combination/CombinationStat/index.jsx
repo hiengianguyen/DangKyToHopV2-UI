@@ -8,7 +8,7 @@ import TitleChart from "./TitleChart";
 import Loading from "../../../Components/Loading";
 import axios from "axios";
 import CombinationChosen from "../CombinationChart/CombinationChosen";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "react-responsive";
@@ -165,7 +165,7 @@ function CombinationStat() {
 
         <div className="flex justify-end mt-4 gap-2 mb-20 items-center text-primary">
           <FontAwesomeIcon icon={faArrowLeft} className="" />
-          <a href={"/combination/submitted/list"}>Quản lý danh sách hồ sơ</a>
+          <Link to={"/combination/submitted/list"}>Quản lý danh sách hồ sơ</Link>
         </div>
         <TitleChart title={"Thống Kê Tỉ Lệ"} />
         <Pc>

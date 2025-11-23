@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../Components/Loading";
 import toast from "react-hot-toast";
 import Modal from "react-bootstrap/esm/Modal";
@@ -64,14 +64,12 @@ function MainNoti() {
       <div className={cx("card-body", "p-0")}>
         <div className={cx("content")}>
           <div className={cx("text-center mb-4")}>
-            <h4 className={cx("mb-2", "text-center fs-1")}>Danh sách thông báo</h4>
-            <p style={{ fontSize: "20px", color: "#666" }}>
-              Đây là những thông báo được gửi đến tất cả học sinh để cập nhật thông tin quan trọng về tuyển sinh và các hoạt động học tập.
-            </p>
+            <h4 className={cx("mb-2", "text-center fs-1 fw-bold")}>Bảng Tin Thông Báo</h4>
+            <p style={{ fontSize: "20px", color: "#666" }}>Cập nhật tin tức tuyển sinh và hoạt động học tập mới nhất</p>
           </div>
           {role === "manager" ? (
             <div className={cx("d-flex", "justify-content-end", "container", "mb-2", "btn-gen-noti")}>
-              <Link to="/notification/generator">
+              <Link to="/notification/generator" className="btn btn-primary text-white fs-2">
                 <FontAwesomeIcon icon={faPlus} className="me-1" /> Tạo thông báo mới
               </Link>
             </div>
@@ -87,11 +85,38 @@ function MainNoti() {
             )}
             {listNoti ? (
               listNoti.map((item, index) => (
-                <div className={cx("noti-box", "rounded-4")} key={index}>
-                  <h5 className={cx("title", "pe-4 fs-2")}>
+                <div
+                  className={cx(
+                    "noti-box",
+                    "bg-white rounded-xl p-4 sm:p-6 group shadow border-s-4 border-gray-100 hover:shadow-md hover:border-blue-600 transition-all cursor-pointer"
+                  )}
+                  key={index}
+                >
+                  <div className="flex gap-4 mb-4">
+                    <span
+                      className={
+                        "px-2.5 py-0.5 rounded-full font-semibold border " +
+                        (item.typeNoti === "Quan trọng"
+                          ? "bg-red-50 text-red-600 border-red-100"
+                          : item.typeNoti === "Tuyển sinh"
+                            ? "bg-blue-50 text-blue-600 border-blue-100"
+                            : "bg-gray-100 text-gray-600 border-gray-200")
+                      }
+                    >
+                      {item.typeNoti}
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <FontAwesomeIcon icon={faCalendar} className="size-6" /> {item.publishAt}
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <FontAwesomeIcon icon={faUser} className="size-6" />
+                      {item.registeredBy}
+                    </span>
+                  </div>
+                  <h5 className={cx("title", "pe-4 fw-bold fs-2 mb-2 texr-back group-hover:text-blue-600 transition-all")}>
                     <Link to={"/notifications/" + item.id}>{item.title}</Link>
                   </h5>
-                  <p className={cx("timer", "mb-0")}>Tạo lúc: {item.publishAt}</p>
+                  <span>{item.subTitle}</span>
                   {role === "manager" ? (
                     <div
                       className={cx("list-icon")}
