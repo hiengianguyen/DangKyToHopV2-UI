@@ -3,7 +3,7 @@ import style from "../Noti.module.scss";
 import BoxRadius from "../../../Components/BoxRadius";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Links, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../Components/Loading";
@@ -75,12 +75,50 @@ function MainNoti() {
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
-            {JSON.stringify(notiSubmittedStatus) !== "{}" && (
-              <div className={cx("noti-box", "rounded-4")}>
-                <h5 className={cx("title", "pe-4 fs-2")}>
-                  <Link to={"/combination/detail"}>{notiSubmittedStatus.title}</Link>
-                </h5>
-                <p className={cx("timer", "mb-0")}>Tạo lúc: {notiSubmittedStatus.publishAt}</p>
+            {JSON.stringify(notiSubmittedStatus) !== "{}" && notiSubmittedStatus.typeNoti === "approved" ? (
+              <div
+                className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-green-50", "box-submitted-noti", {
+                  success: notiSubmittedStatus.typeNoti === "approved"
+                })}
+              >
+                <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
+                  <svg className="size-14 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h1 className="fw-bold text-emerald-900">Chúc mừng! Hồ sơ của bạn đã được phê duyệt</h1>
+                  <span className="text-emerald-700">
+                    Hồ sơ đăng ký tuyển sinh của bạn đã đáp ứng đủ điều kiện. Vui lòng xem hướng dẫn nhập học chi tiết ở website của{" "}
+                    <b className="text-emerald-800">trường THPT Duy Tân</b>
+                  </span>
+                </div>
+                <Link to={"/combination/detail"} className="btn btn-success text-white fs-4 fw-bold">
+                  Xem thông tin trạng thái
+                </Link>
+              </div>
+            ) : (
+              <div className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-red-50", "box-submitted-noti")}>
+                <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
+                  <svg className="size-14 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h1 className="fw-bold text-red-900">Yêu cầu bổ sung hồ sơ</h1>
+                  <span className="text-red-700">
+                    Hồ sơ của bạn còn thiếu một số thông tin quan trọng. Vui lòng cập nhật trước ngày{" "}
+                    <b className="text-red-800">30/11/2025</b> để được tiếp tục xét duyệt.
+                  </span>
+                </div>
+                <Link to={"/combination/detail"} className="btn btn-danger text-white fs-4 fw-bold">
+                  Xem thông tin trạng thái
+                </Link>
               </div>
             )}
             {listNoti ? (

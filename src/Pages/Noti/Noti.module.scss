@@ -148,3 +148,12 @@
     opacity: 0.8;
   }
 }
+
+.box-submitted-noti {
+  border-width: 1px;
+  border-color: rgb(247, 187, 187) !important;
+
+  &.success {
+    border-color: rgb(187, 247, 208, 1) !important;
+  }
+}
