@@ -44,7 +44,7 @@ function CombinationList() {
   useEffect(() => {
     axios
       .get(API_ENDPOINT + "/combination/submited-list", {
-        withCredentials: true,
+        withCredentials: true
       })
       .then((axiosData) => {
         const data = axiosData.data;
@@ -86,12 +86,12 @@ function CombinationList() {
         API_ENDPOINT + "/file/excel/filter-submited-list",
         { submittedList: submittedList },
         {
-          responseType: "arraybuffer",
+          responseType: "arraybuffer"
         }
       )
       .then((res) => {
         const blob = new Blob([res.data], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         });
 
         const url = window.URL.createObjectURL(blob);
@@ -109,10 +109,7 @@ function CombinationList() {
   };
 
   const visibleTaskLimit = 12;
-  const taskOfPage = submittedList.slice(
-    (page - 1) * visibleTaskLimit,
-    page * visibleTaskLimit
-  );
+  const taskOfPage = submittedList.slice((page - 1) * visibleTaskLimit, page * visibleTaskLimit);
   const totalPage = Math.ceil(submittedList.length / visibleTaskLimit);
 
   const handleChangePage = (e, value) => {
@@ -125,10 +122,7 @@ function CombinationList() {
       <div className="d-flex justify-content-between" style={{ height: "3pc" }}>
         <h1 className="fs-1 fw-bold">Danh sách đăng ký</h1>
         <DropdownButton drop="start" size="lg" title="Xuất file Excel">
-          <Dropdown.Item
-            className="fs-4 p-3"
-            href={API_ENDPOINT + "/file/excel/submited-list"}
-          >
+          <Dropdown.Item className="fs-4 p-3" href={API_ENDPOINT + "/file/excel/submited-list"}>
             Tất cả hồ sơ
           </Dropdown.Item>
           <Dropdown.Item className="fs-4 p-3" onClick={handleExportExcel}>
@@ -150,16 +144,16 @@ function CombinationList() {
               options={[
                 {
                   title: "Tất cả",
-                  value: "Tất cả",
+                  value: "Tất cả"
                 },
                 {
                   title: "Nam",
-                  value: "Nam",
+                  value: "Nam"
                 },
                 {
                   title: "Nữ",
-                  value: "Nữ",
-                },
+                  value: "Nữ"
+                }
               ]}
             />
           </Col>
@@ -171,28 +165,28 @@ function CombinationList() {
               options={[
                 {
                   title: "Tất cả",
-                  value: "Tất cả",
+                  value: "Tất cả"
                 },
                 {
                   title: "Tổ hợp 1",
-                  value: "Tổ hợp 1",
+                  value: "Tổ hợp 1"
                 },
                 {
                   title: "Tổ hợp 2",
-                  value: "Tổ hợp 2",
+                  value: "Tổ hợp 2"
                 },
                 {
                   title: "Tổ hợp 3",
-                  value: "Tổ hợp 3",
+                  value: "Tổ hợp 3"
                 },
                 {
                   title: "Tổ hợp 4",
-                  value: "Tổ hợp 4",
+                  value: "Tổ hợp 4"
                 },
                 {
                   title: "Tổ hợp 5",
-                  value: "Tổ hợp 5",
-                },
+                  value: "Tổ hợp 5"
+                }
               ]}
             />
           </Col>
@@ -204,28 +198,28 @@ function CombinationList() {
               options={[
                 {
                   title: "Tất cả",
-                  value: "Tất cả",
+                  value: "Tất cả"
                 },
                 {
                   title: "Tổ hợp 1",
-                  value: "Tổ hợp 1",
+                  value: "Tổ hợp 1"
                 },
                 {
                   title: "Tổ hợp 2",
-                  value: "Tổ hợp 2",
+                  value: "Tổ hợp 2"
                 },
                 {
                   title: "Tổ hợp 3",
-                  value: "Tổ hợp 3",
+                  value: "Tổ hợp 3"
                 },
                 {
                   title: "Tổ hợp 4",
-                  value: "Tổ hợp 4",
+                  value: "Tổ hợp 4"
                 },
                 {
                   title: "Tổ hợp 5",
-                  value: "Tổ hợp 5",
-                },
+                  value: "Tổ hợp 5"
+                }
               ]}
             />
           </Col>
@@ -237,20 +231,20 @@ function CombinationList() {
               options={[
                 {
                   title: "Tất cả",
-                  value: "Tất cả",
+                  value: "Tất cả"
                 },
                 {
                   title: "Đã nộp",
-                  value: "Đã nộp",
+                  value: "Đã nộp"
                 },
                 {
                   title: "Đã phê duyệt",
-                  value: "Đã phê duyệt",
+                  value: "Đã phê duyệt"
                 },
                 {
                   title: "Đã huỷ phê duyệt",
-                  value: "Đã huỷ phê duyệt",
-                },
+                  value: "Đã huỷ phê duyệt"
+                }
               ]}
             />
           </Col>
@@ -270,42 +264,21 @@ function CombinationList() {
             taskOfPage.map((item, index) => (
               <Col xs={"auto"} key={index}>
                 <Pc>
-                  <CardStudent
-                    setSubmittedList={setSubmittedList}
-                    data={{ ...item, index: index }}
-                  />
+                  <CardStudent setSubmittedList={setSubmittedList} data={{ ...item, index: index }} />
                 </Pc>
 
                 <Desktop>
-                  <CardStudent
-                    setSubmittedList={setSubmittedList}
-                    data={{ ...item, index: index }}
-                    resp="desktop"
-                  />
+                  <CardStudent setSubmittedList={setSubmittedList} data={{ ...item, index: index }} resp="desktop" />
                 </Desktop>
               </Col>
             ))
           ) : (
             <NonDataImg />
           )}
-          {isLoadingList && (
-            <Loading
-              height="100%"
-              position="absolute"
-              color="rgb(244 244 244)"
-              zIndex="9998"
-            />
-          )}
+          {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
         <Stack spacing={2}>
-          <Pagination
-            count={totalPage}
-            size="large"
-            color="primary"
-            variant="outlined"
-            shape="rounded"
-            onChange={handleChangePage}
-          />
+          <Pagination count={totalPage} size="large" color="primary" variant="outlined" shape="rounded" onChange={handleChangePage} />
         </Stack>
       </form>
     </BoxRadius>

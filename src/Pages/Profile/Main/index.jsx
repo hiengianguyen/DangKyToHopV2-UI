@@ -33,62 +33,31 @@ function Main() {
   return (
     <BoxRadius>
       {isLoading && <Loading title="Đang tải trang cá nhân" />}
-      <div
-        className={cx("d-flex", "align-items-between", "justify-content-start")}
-      >
+      <div className={cx("d-flex", "align-items-between", "justify-content-start")}>
         <h4 className={cx("mb-0")}>Trang cá nhân</h4>
       </div>
-      <div
-        className={cx(
-          "mb-3",
-          "d-flex",
-          "justify-content-center",
-          "align-items-center"
-        )}
-      >
+      <div className={cx("mb-3", "d-flex", "justify-content-center", "align-items-center")}>
         <div className={cx("card-body-profile", "my-4")}>
-          <div
-            className={cx(
-              "info-top",
-              "containers",
-              "mb-3",
-              "d-flex",
-              "justify-content-center",
-              "align-items-center"
-            )}
-          >
-            <img
-              className={cx("profile-img-user", "mt-2")}
-              src={user.avatar}
-              alt="User"
-            />
+          <div className={cx("info-top", "containers", "mb-3", "d-flex", "justify-content-center", "align-items-center")}>
+            <img className={cx("profile-img-user", "mt-2")} src={user.avatar} alt="User" />
           </div>
           <div className={cx("info", "profile-dad-name")}>
             <div className={cx("info-sub", "mt-10", "containers")}>
               <div className={cx("profile-dad-name", "mb-2")}>
-                <label
-                  htmlFor="profile-name-input"
-                  className={cx("form-label-profile")}
-                >
+                <label htmlFor="profile-name-input" className={cx("form-label-profile")}>
                   Họ và tên:
                 </label>
                 <h4 className={cx("profile-name-user")}>{user.fullName}</h4>
               </div>
               <div className={cx("info-bt", "mb-3")}>
-                <label
-                  htmlFor="profile-phone-input"
-                  className={cx("form-label-profile")}
-                >
+                <label htmlFor="profile-phone-input" className={cx("form-label-profile")}>
                   Số điện thoại:
                 </label>
                 <p className={cx("profile-phone-user", "mb-2")}>{user.phone}</p>
               </div>
             </div>
             <div className={cx("btn-edit", "d-flex")}>
-              <div
-                onClick={() => userNavigator("/profile/edit")}
-                className={cx("btn", "btn-secondary", "btn-lg")}
-              >
+              <div onClick={() => userNavigator("/profile/edit")} className={cx("btn", "btn-secondary", "btn-lg")}>
                 Chỉnh sửa
               </div>
             </div>

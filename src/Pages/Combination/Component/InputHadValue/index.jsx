@@ -3,7 +3,7 @@ import style from "./InputHadValue.module.scss";
 
 const cx = classNames.bind(style);
 
-function InputHadValue({ label = "", value = "", fontStyle = "", flexColumn=true }) {
+function InputHadValue({ label = "", value = "", fontStyle = "", flexColumn = true }) {
   return (
     <div className={cx("wrapper", flexColumn ? "flex-col" : "items-center")}>
       <span>{label}:</span>

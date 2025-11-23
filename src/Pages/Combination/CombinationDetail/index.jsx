@@ -48,53 +48,28 @@ function CombinationDetail() {
       {isLoading && <Loading title="Đang tải hồ sơ" />}
       {submitedDetail ? (
         <Container>
-          <Tabs
-            defaultActiveKey="1"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3"
-          >
+          <Tabs defaultActiveKey="1" activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
             <Tab eventKey="1" title="1. Thông tin chung">
-              <CombinationStep1R
-                valueStudent={submitedDetail}
-                role={auth?.user?.role}
-              />
+              <CombinationStep1R valueStudent={submitedDetail} role={auth?.user?.role} />
             </Tab>
             <Tab eventKey="2" title="2. Đơn xin nhập học">
-              <CombinationStep2R
-                valueStudent={submitedDetail}
-                role={auth?.user?.role}
-              />
+              <CombinationStep2R valueStudent={submitedDetail} role={auth?.user?.role} />
             </Tab>
             <Tab eventKey="3" title="3. Chọn tổ hợp">
-              <CombinationStep3R
-                valueStudent={submitedDetail}
-                role={auth?.user?.role}
-              />
+              <CombinationStep3R valueStudent={submitedDetail} role={auth?.user?.role} />
             </Tab>
             <Tab eventKey="4" title="4. Lý lịch học sinh">
-              <CombinationStep4R
-                valueStudent={submitedDetail}
-                role={auth?.user?.role}
-              />
+              <CombinationStep4R valueStudent={submitedDetail} role={auth?.user?.role} />
             </Tab>
           </Tabs>
           {submitedDetail && (
-            <BtnActions
-              keyPage={key}
-              userId={submitedDetail.userId}
-              disabled={["approved", "rejected"].includes(
-                submitedDetail.status
-              )}
-            />
+            <BtnActions keyPage={key} userId={submitedDetail.userId} disabled={["approved", "rejected"].includes(submitedDetail.status)} />
           )}
         </Container>
       ) : (
         <div className="flex justify-center flex-col items-center mb-10">
           <img src="/empty-box.png" className="size-80 mt-10" alt="" />
-          <h1 className="mt-10 mb-2 fs-1 fw-medium">
-            Hiện tại chưa có dữ liệu hồ sơ
-          </h1>
+          <h1 className="mt-10 mb-2 fs-1 fw-medium">Hiện tại chưa có dữ liệu hồ sơ</h1>
           <p>
             Bấm vào đây để chuyển hướng đến{" "}
             <a href="/combination/register" className="text-primary fw-medium">

@@ -61,14 +61,12 @@ function BarDivideClass({ show = false }) {
                   height: "10pc",
                   width: "10pc",
                   pointerEvents: "none",
-                  userSelect: "none",
+                  userSelect: "none"
                 }}
               />
               <div className="d-flex text-center flex-column">
                 <h3>Không có lớp học</h3>
-                <i className="text-secondary">
-                  Hiệi tại chưa có lớp học trong hàng đợi
-                </i>
+                <i className="text-secondary">Hiệi tại chưa có lớp học trong hàng đợi</i>
                 <Link to="/ad/classmate" className="text-primary">
                   Quản lí lớp học
                   <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
@@ -77,14 +75,7 @@ function BarDivideClass({ show = false }) {
             </div>
           )}
         </Row>
-        {isLoadingList && (
-          <Loading
-            height="100%"
-            position="absolute"
-            color="rgb(244 244 244)"
-            zIndex="9998"
-          />
-        )}
+        {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
       </div>
     </div>
   );

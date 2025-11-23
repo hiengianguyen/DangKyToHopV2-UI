@@ -23,9 +23,7 @@ function ClassDetail() {
   const [students, setStudents] = useState([]);
   const [sortList, setSortList] = useState(null);
   const [isloading, setIsLoading] = useState(true);
-  const [messageNonData, setMessageNonData] = useState(
-    "Hiện chưa có học sinh được xếp vào lớp này"
-  );
+  const [messageNonData, setMessageNonData] = useState("Hiện chưa có học sinh được xếp vào lớp này");
 
   const { id } = useParams();
 
@@ -68,12 +66,12 @@ function ClassDetail() {
         API_ENDPOINT + "/file/excel/class-detail",
         { submittedList: data },
         {
-          responseType: "arraybuffer",
+          responseType: "arraybuffer"
         }
       )
       .then((res) => {
         const blob = new Blob([res.data], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         });
 
         const url = window.URL.createObjectURL(blob);
@@ -100,31 +98,21 @@ function ClassDetail() {
           <div className="flex flex-col">
             <h1 className="fs-1 fw-bolder">Lớp {classDetail.name}</h1>
             <h2 className="fs-1">
-              Giáo viên chủ nhiệm:{" "}
-              <i className="fw-bolder">{classDetail.teacher}</i>
+              Giáo viên chủ nhiệm: <i className="fw-bolder">{classDetail.teacher}</i>
             </h2>
           </div>
           <DropdownButton drop="start" size="lg" title="Xuất file Excel">
-            <Dropdown.Item
-              className="fs-4 p-3"
-              onClick={() => handleExportExcel(studentListMain)}
-            >
+            <Dropdown.Item className="fs-4 p-3" onClick={() => handleExportExcel(studentListMain)}>
               Tất cả học sinh
             </Dropdown.Item>
-            <Dropdown.Item
-              className="fs-4 p-3"
-              onClick={() => handleExportExcel(students)}
-            >
+            <Dropdown.Item className="fs-4 p-3" onClick={() => handleExportExcel(students)}>
               Học sinh đã lọc
             </Dropdown.Item>
           </DropdownButton>
         </div>
 
         <form ref={formRef}>
-          <FillterBoxDetail
-            handleSubmit={() => handleSubmit(sortList)}
-            handleSubmitHaveSort={handleSubmit}
-          />
+          <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
         </form>
 
         <div className={cx("list-student", "mb-10")}>
@@ -132,11 +120,7 @@ function ClassDetail() {
             students.map((item, index) => (
               <div className="d-flex align-items-center" key={index}>
                 <span className={cx("count")}>{index + 1}</span>
-                <CardStudent
-                  data={item}
-                  setStudents={setStudents}
-                  classDetail={classDetail}
-                />
+                <CardStudent data={item} setStudents={setStudents} classDetail={classDetail} />
               </div>
             ))
           ) : (

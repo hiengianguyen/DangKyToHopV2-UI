@@ -4,7 +4,16 @@ import Form from "react-bootstrap/Form";
 
 const cx = classNames.bind(style);
 
-function Select({ label = "", name = "", valueNoti = "Chọn giá trị", opts = [], onChange = () => {}, selected = "", errorValue = false, noLabel = false }) {
+function Select({
+  label = "",
+  name = "",
+  valueNoti = "Chọn giá trị",
+  opts = [],
+  onChange = () => {},
+  selected = "",
+  errorValue = false,
+  noLabel = false
+}) {
   return (
     <Form.Group className={cx("wrapper", { invalid: errorValue })}>
       {!noLabel && <Form.Label as="span">{label}:</Form.Label>}

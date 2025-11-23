@@ -104,7 +104,6 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 </Col>
               </Row>
 
-                
               <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Hộ khẩu thường trú:</p>
               <Row>
                 <Col>
@@ -114,15 +113,15 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
                 </Col>
               </Row>
-                <Col>
-                  <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
-                </Col>
+              <Col>
+                <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
+              </Col>
 
-                <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Thông tin cha mẹ:</p>
+              <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Thông tin cha mẹ:</p>
 
-                <Col>
-                  <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-                </Col>
+              <Col>
+                <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+              </Col>
               <Row>
                 <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
@@ -253,7 +252,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   defaultValue={valueStudent.difficultSituation}
                 />
               </Col>
-                <span className={cx("health-status", "mt-2 fw-bold")}>Tình trạng sức khỏe:</span>
+              <span className={cx("health-status", "mt-2 fw-bold")}>Tình trạng sức khỏe:</span>
               <Row>
                 <Col>
                   <InputBorder label="+ Chiều cao (cm)" type="number" name="height" defaultValue={valueStudent.height} />

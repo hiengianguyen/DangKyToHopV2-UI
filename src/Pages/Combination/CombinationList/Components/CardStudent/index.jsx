@@ -22,14 +22,11 @@ function CardStudent({ data = {}, resp = "pc", setSubmittedList = () => {} }) {
     setSaved((prev) => !prev);
     saved
       ? toast
-          .promise(
-            axios.post(API_ENDPOINT + "/combination/unsave", { docId: docId }),
-            {
-              loading: "Đang gỡ lưu hồ sơ...",
-              success: <b>Gỡ lưu thành công!</b>,
-              error: <b>Gỡ lưu thất bại.</b>,
-            }
-          )
+          .promise(axios.post(API_ENDPOINT + "/combination/unsave", { docId: docId }), {
+            loading: "Đang gỡ lưu hồ sơ...",
+            success: <b>Gỡ lưu thành công!</b>,
+            error: <b>Gỡ lưu thất bại.</b>
+          })
           .then(() =>
             setSubmittedList((prev) =>
               prev.map((item) => {
@@ -40,14 +37,11 @@ function CardStudent({ data = {}, resp = "pc", setSubmittedList = () => {} }) {
             )
           )
       : toast
-          .promise(
-            axios.post(API_ENDPOINT + "/combination/save", { docId: docId }),
-            {
-              loading: "Đang lưu hồ sơ...",
-              success: <b>Lưu thành công!</b>,
-              error: <b>Lưu thất bại.</b>,
-            }
-          )
+          .promise(axios.post(API_ENDPOINT + "/combination/save", { docId: docId }), {
+            loading: "Đang lưu hồ sơ...",
+            success: <b>Lưu thành công!</b>,
+            error: <b>Lưu thất bại.</b>
+          })
           .then(() =>
             setSubmittedList((prev) =>
               prev.map((item) => {
@@ -62,11 +56,7 @@ function CardStudent({ data = {}, resp = "pc", setSubmittedList = () => {} }) {
     <div className={cx("wrapper", "shadow", resp)}>
       <div className="d-flex position-relative">
         <div className={cx("d-flex flex-column col-md-4")}>
-          <img
-            src={data.avatar}
-            alt={data.fullName}
-            className={cx("img-student", "border border-dark-subtle")}
-          />
+          <img src={data.avatar} alt={data.fullName} className={cx("img-student", "border border-dark-subtle")} />
         </div>
         <div className={cx("col-md-8 px-0 position-relative")}>
           <div className={cx("card-body pt-2 pb-3 px-2")}>
@@ -79,46 +69,27 @@ function CardStudent({ data = {}, resp = "pc", setSubmittedList = () => {} }) {
 
             <div className={cx("details")}>
               <span className={cx("d-flex", "align-items-center", "main")}>
-                <p
-                  className={cx("mb-0 me-2")}
-                  title={"Giới tính: " + data.gender}
-                >
+                <p className={cx("mb-0 me-2")} title={"Giới tính: " + data.gender}>
                   {data.gender}
                 </p>
                 •
-                <p
-                  className={cx("mb-0 mx-2")}
-                  title={"Ngày sinh: " + formatDayOfBirth(data.dayOfBirth)}
-                >
+                <p className={cx("mb-0 mx-2")} title={"Ngày sinh: " + formatDayOfBirth(data.dayOfBirth)}>
                   {formatDayOfBirth(data.dayOfBirth)}
                 </p>
                 •
-                <p
-                  className={cx("mb-0 ms-2", "nation-detail")}
-                  title={"Dân tộc: " + data.nation}
-                >
+                <p className={cx("mb-0 ms-2", "nation-detail")} title={"Dân tộc: " + data.nation}>
                   {data.nation}
                 </p>
               </span>
-              <span title={"Nguyện vọng 1: " + data.combination1}>
-                Nguyện vọng 1: {data.combination1}
-              </span>
-              <span title={"Nguyện vọng 2: " + data.combination2}>
-                Nguyện vọng 2: {data.combination2}
-              </span>
-              <span
-                className={cx("time")}
-                title={"Đăng ký lúc: " + data.registeredAt}
-              >
+              <span title={"Nguyện vọng 1: " + data.combination1}>Nguyện vọng 1: {data.combination1}</span>
+              <span title={"Nguyện vọng 2: " + data.combination2}>Nguyện vọng 2: {data.combination2}</span>
+              <span className={cx("time")} title={"Đăng ký lúc: " + data.registeredAt}>
                 {data.registeredAt}
               </span>
             </div>
             <button
               type="button"
-              className={cx(
-                "btn mt-4 fs-4 text-white border-none",
-                "btn-checkinfo"
-              )}
+              className={cx("btn mt-4 fs-4 text-white border-none", "btn-checkinfo")}
               onClick={() => navigator("/combination/detail/" + data.userId)}
             >
               Xem thông tin

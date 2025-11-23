@@ -141,20 +141,20 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 </Col>
               </Col>
               <Col>
-                  <InputHadValue label="Dân tộc" value={valueStudent.nation} />
-                </Col>
+                <InputHadValue label="Dân tộc" value={valueStudent.nation} />
+              </Col>
             </Row>
 
             <Row>
               <Col>
                 <InputHadValue label="Sinh ngày" fontStyle="none" value={valueStudent.dayOfBirth} />
               </Col>
-                
+
               <Col>
                 <InputHadValue label="Số điện thoại" fontStyle="none" value="0362356747" />
               </Col>
             </Row>
-            
+
             <Col>
               <InputHadValue
                 label="Địa chỉ thường chú"

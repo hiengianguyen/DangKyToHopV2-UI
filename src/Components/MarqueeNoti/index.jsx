@@ -19,13 +19,7 @@ function MarqueeNoti() {
   }, []);
   return (
     <div className={cx("ShortArticle")}>
-      <Marquee
-        className={cx("marquee-box")}
-        pauseOnHover
-        scrollamount="5"
-        scrolldelay="5"
-        direction="left"
-      >
+      <Marquee className={cx("marquee-box")} pauseOnHover scrollamount="5" scrolldelay="5" direction="left">
         <div className={cx("block-row")}>
           {listNoti &&
             listNoti.map((item, index) => (

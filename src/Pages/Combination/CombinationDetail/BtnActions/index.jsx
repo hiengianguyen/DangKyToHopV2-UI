@@ -16,37 +16,28 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
 
   const handleReject = (userId) => {
     if (disabled) return;
-    toast.promise(
-      axios.post(API_ENDPOINT + "/combination/submited-reject/" + userId),
-      {
-        loading: "Đang huỷ phê duyệt...",
-        success: <b>Huỷ phê duyệt thành công!</b>,
-        error: <b>Huỷ phê duyệt thất bại.</b>,
-      }
-    );
+    toast.promise(axios.post(API_ENDPOINT + "/combination/submited-reject/" + userId), {
+      loading: "Đang huỷ phê duyệt...",
+      success: <b>Huỷ phê duyệt thành công!</b>,
+      error: <b>Huỷ phê duyệt thất bại.</b>
+    });
   };
 
   const handleApprove = (userId) => {
     if (disabled) return;
-    toast.promise(
-      axios.post(API_ENDPOINT + "/combination/submited-approve/" + userId),
-      {
-        loading: "Đang phê duyệt...",
-        success: <b>Phê duyệt thành công!</b>,
-        error: <b>Phê duyệt thất bại.</b>,
-      }
-    );
+    toast.promise(axios.post(API_ENDPOINT + "/combination/submited-approve/" + userId), {
+      loading: "Đang phê duyệt...",
+      success: <b>Phê duyệt thành công!</b>,
+      error: <b>Phê duyệt thất bại.</b>
+    });
   };
 
   const handleRedirectPDF = () => {
     if (Number(keyPage) < 3) {
-      window.open(
-        "/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage),
-        "_blank"
-      );
+      window.open("/file/pdf/submited/" + userId + "?template=" + getTemplateId(keyPage), "_blank");
     } else {
       toast("Chức năng đang hoàn thiện...", {
-        icon: "💙",
+        icon: "💙"
       });
     }
   };
@@ -59,7 +50,7 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
               <Link
                 to="/combination/submit-combination?step=2"
                 className={cx("btnAction", "btn", "btn-secondary", {
-                  disabled: disabled,
+                  disabled: disabled
                 })}
               >
                 Chỉnh sửa
@@ -70,18 +61,14 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
                 type="button"
                 id="btn-modal-delete"
                 className={cx("btnAction", "btn", "btn-danger", {
-                  disabled: disabled,
+                  disabled: disabled
                 })}
               >
                 Xoá hồ sơ
               </button>
             </Col>
             <Col xs={"auto"}>
-              <p
-                onClick={handleRedirectPDF}
-                className={cx("btnAction", "btn", "btn-info")}
-                target="_blank"
-              >
+              <p onClick={handleRedirectPDF} className={cx("btnAction", "btn", "btn-info")} target="_blank">
                 Hồ sơ PDF
               </p>
             </Col>
@@ -89,18 +76,14 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
         ) : (
           <>
             <Col xs={"auto"}>
-              <p
-                onClick={handleRedirectPDF}
-                className={cx("btnAction", "btn", "btn-info")}
-                target="_blank"
-              >
+              <p onClick={handleRedirectPDF} className={cx("btnAction", "btn", "btn-info")} target="_blank">
                 Hồ sơ PDF
               </p>
             </Col>
             <Col xs={"auto"}>
               <button
                 className={cx("btnAction", "btn", "btn-danger", {
-                  disabled: disabled,
+                  disabled: disabled
                 })}
                 type="button"
                 onClick={() => handleReject(userId)}
@@ -111,7 +94,7 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
             <Col xs={"auto"}>
               <button
                 className={cx("btnAction", "btn", "btn-primary", {
-                  disabled: disabled,
+                  disabled: disabled
                 })}
                 type="button"
                 onClick={() => handleApprove(userId)}
