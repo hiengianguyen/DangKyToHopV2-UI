@@ -9,14 +9,12 @@ import toast from "react-hot-toast";
 import { API_ENDPOINT } from "../../../../../constants";
 const cx = classNames.bind(style);
 
-function Generator1({
-  show = true,
-  data = {},
-  btnText = "Tạo thông báo",
-  isUpdate = false,
-}) {
+function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isUpdate = false }) {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const [subTitle, setSubTitle] = useState("");
+  const [registeredBy, setRegisteredBy] = useState("");
+  const [typeNoti, setTypeNoti] = useState("");
   const [error, setError] = useState("");
   const navigator = useNavigate();
 
@@ -25,6 +23,9 @@ function Generator1({
 
     setTitle(data.title);
     setMessage(data.message);
+    setTypeNoti(data.typeNoti);
+    setSubTitle(data.subTitle);
+    setRegisteredBy(data.registeredBy);
   }, [data]);
 
   const handleSubmit = async (e) => {
@@ -39,29 +40,24 @@ function Generator1({
       return;
     }
     setError("");
-    const dataPost = { title, message };
+    const dataPost = { title, message, subTitle, registeredBy, typeNoti };
     toast
       .promise(
         axios.post(
-          isUpdate
-            ? API_ENDPOINT + "/notification/update-noti/" + data.id
-            : API_ENDPOINT + "/notification/create-noti/",
+          isUpdate ? API_ENDPOINT + "/notification/update-noti/" + data.id : API_ENDPOINT + "/notification/create-noti/",
           dataPost
         ),
         {
           loading: "Đang tiến hành...",
           success: <b>Thành công!</b>,
-          error: <b>Thất bại.</b>,
+          error: <b>Thất bại.</b>
         }
       )
       .then(() => navigator("/notifications"));
   };
 
   return (
-    <div
-      className={cx("boxSubmit1")}
-      style={{ display: show ? "block" : "none" }}
-    >
+    <div className={cx("boxSubmit1")} style={{ display: show ? "block" : "none" }}>
       <Form className={cx("createNotiForm")} onSubmit={handleSubmit}>
         <Form.Group className={cx("formGroup")}>
           <Form.Label htmlFor="signin-phone">Tiêu đề thông báo (*):</Form.Label>
@@ -79,9 +75,22 @@ function Generator1({
           />
         </Form.Group>
         <Form.Group className={cx("formGroup")}>
-          <Form.Label htmlFor="noti-message">
-            Nội dung thông báo (*):
-          </Form.Label>
+          <Form.Label htmlFor="signin-phone">Mô tả ngắn thông báo (*):</Form.Label>
+          <Form.Control
+            type="text"
+            id="signin-phone"
+            name="subTitle"
+            className={cx("notiInput")}
+            required
+            minLength={10}
+            maxLength={130}
+            placeholder="Mô tả ngắn thông báo"
+            value={subTitle}
+            onChange={(e) => setSubTitle(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className={cx("formGroup")}>
+          <Form.Label htmlFor="noti-message">Nội dung thông báo (*):</Form.Label>
           <Form.Control
             as="textarea"
             name="message"
@@ -94,6 +103,35 @@ function Generator1({
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+        </Form.Group>
+        <Form.Group className={cx("formGroup")}>
+          <Form.Label htmlFor="signin-phone">Tạo bởi ai (*):</Form.Label>
+          <Form.Control
+            type="text"
+            id="signin-phone"
+            name="registeredBy"
+            className={cx("notiInput")}
+            required
+            maxLength={50}
+            placeholder="Tạo bởi"
+            value={registeredBy}
+            onChange={(e) => setRegisteredBy(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className={cx("formGroup")}>
+          <Form.Label htmlFor="signin-phone">Loại thông báo (*):</Form.Label>
+          <Form.Select
+            id="signin-phone"
+            name="typeNoti"
+            className={cx("notiInput", "py-4 px-2")}
+            required
+            value={typeNoti}
+            onChange={(e) => setTypeNoti(e.target.value)}
+          >
+            <option value="Tuyển sinh">Tuyển sinh</option>
+            <option value="Quan trọng">Quan trọng</option>
+            <option value="Hướng dẫn">Hướng dẫn</option>
+          </Form.Select>
         </Form.Group>
         {error && <span className={cx("formMessage")}>{error}</span>}
         <div className={cx("flexEnd")}>
