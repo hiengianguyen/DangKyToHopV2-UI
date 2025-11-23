@@ -173,10 +173,10 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
               <InputBorder label="Số điện thoại cá nhân" name="phone" type="number" defaultValue={valueStudent.phone} maxLength={10} />
             </Col>
 
-            <Col>
-              <InputBorder label="Họ và tên cha" name="nameDad" defaultValue={valueStudent.nameDad} />
-            </Col>
             <Row>
+              <Col>
+                <InputBorder label="Họ và tên cha" name="nameDad" defaultValue={valueStudent.nameDad} />
+              </Col>
               <Col>
                 <InputBorder label="Nghề nghiệp" name="jobDad" fontStyle="none" defaultValue={valueStudent.jobDad} />
               </Col>
@@ -185,10 +185,10 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
               </Col>
             </Row>
 
-            <Col>
-              <InputBorder label="Họ và tên mẹ" name="nameMom" defaultValue={valueStudent.nameMom} />
-            </Col>
             <Row>
+              <Col>
+                <InputBorder label="Họ và tên mẹ" name="nameMom" defaultValue={valueStudent.nameMom} />
+              </Col>
               <Col>
                 <InputBorder label="Nghề nghiệp" fontStyle="none" name="jobMom" defaultValue={valueStudent.jobMom} />
               </Col>

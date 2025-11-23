@@ -6,7 +6,7 @@ import CropAvatarStudent from "../../Pages/Combination/Component/CropAvatarStude
 
 const cx = classNames.bind(style);
 
-function UploadSignature({ title = "Chữ ký", dataAvatarImg = "", name = "" }) {
+function UploadSignature({ title = "Chữ ký", dataAvatarImg = "", name = "", onValue = () => {} }) {
   const fileInputRef = useRef();
   const [fileInput, setFileInput] = useState();
   const [urlAvarTar, setUrlAvarTar] = useState(null);
@@ -22,6 +22,7 @@ function UploadSignature({ title = "Chữ ký", dataAvatarImg = "", name = "" })
     if (dataAvatarImg === "") return;
     if (dataAvatarImg) {
       setUrlAvarTarResult(dataAvatarImg);
+      onValue(dataAvatarImg);
       setShowResultImg(true);
     }
   }, [dataAvatarImg]);
@@ -32,6 +33,7 @@ function UploadSignature({ title = "Chữ ký", dataAvatarImg = "", name = "" })
     setShowResultImg(true);
     setShowCropper(true);
     setUrlAvarTar(urlImg);
+    onValue(urlImg);
   };
 
   return (

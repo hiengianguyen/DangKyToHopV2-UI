@@ -20,6 +20,8 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
   const [fileInput, setFileInput] = useState();
   const [urlAvarTar, setUrlAvarTar] = useState("");
   const [urlAvarTarResult, setUrlAvarTarResult] = useState(null);
+  const [signatureParent, setSignatureParent] = useState("");
+  const [signatureStudent, setSignatureStudent] = useState("");
   const [showResultImg, setShowResultImg] = useState(false);
   const [showCropper, setShowCropper] = useState(false);
   const [validated, setValidated] = useState(false);
@@ -44,8 +46,8 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
   }, [valueStudent]);
 
   const handleSubmit = () => {
-    if (urlAvarTarResult === null || urlAvarTarResult.length === 0) {
-      return toast.error("Vui lòng chọn ảnh thẻ");
+    if (urlAvarTarResult === null || urlAvarTarResult.length === 0 || signatureParent === "" || signatureStudent === "") {
+      return toast.error("Vui lòng chọn ảnh thẻ hoặc chữ ký");
     }
     if (formElememt.checkValidity()) {
       const formData = new FormData(formElememt);
@@ -262,12 +264,22 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
               <div className="flex flex-col items-center">
                 <b>Xác nhận của cha/mẹ HS hoặc người giám hộ</b>
                 <i>(Ký và ghi rõ họ tên)</i>
-                <UploadSignature title="Chữ ký của cha/mẹ" dataAvatarImg={valueStudent.signatureParents} name="signatureParents" />
+                <UploadSignature
+                  title="Chữ ký của cha/mẹ"
+                  dataAvatarImg={valueStudent.signatureParents}
+                  onValue={setSignatureParent}
+                  name="signatureParents"
+                />
               </div>
               <div className="flex flex-col items-center flex-1">
                 <b>Học sinh</b>
                 <i>(Ký và ghi rõ họ tên)</i>
-                <UploadSignature title="Chữ ký của học sinh" dataAvatarImg={valueStudent.signatureStudent} name="signatureStudent" />
+                <UploadSignature
+                  title="Chữ ký của học sinh"
+                  dataAvatarImg={valueStudent.signatureStudent}
+                  onValue={setSignatureStudent}
+                  name="signatureStudent"
+                />
               </div>
             </div>
           </Form>

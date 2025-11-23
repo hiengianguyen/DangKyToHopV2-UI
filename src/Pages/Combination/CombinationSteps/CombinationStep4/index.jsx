@@ -119,10 +119,10 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
 
               <p className={cx("place-label", "mt-10 mb-6 fw-bold")}>Thông tin cha mẹ:</p>
 
-              <Col>
-                <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-              </Col>
               <Row>
+                <Col>
+                  <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+                </Col>
                 <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
                 </Col>
@@ -135,9 +135,6 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 <Col>
                   <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
                 </Col>
-              </Row>
-
-              <Row>
                 <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
                 </Col>
