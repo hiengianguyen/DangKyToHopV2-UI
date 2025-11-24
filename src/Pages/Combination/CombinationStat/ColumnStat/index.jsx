@@ -1,7 +1,7 @@
-function ColumnStat({ value = 0, max = 0, title = "15 - 18" }) {
+function ColumnStat({ value = 0, max = 0, title = "15 - 18", bg = "" }) {
   return (
     <div className="flex flex-col items-center w-100 mt-4">
-      <div className="w-full h-full relative group">
+      <div className={"w-full h-full relative group " + (bg && "bg-" + bg + "-100")}>
         <div
           title={"Có " + value + " hồ sơ có tổng điểm 3 môn " + title + "đ"}
           className="top-auto w-full absolute bottom-0 text-transparent bg-indigo-300 rounded-t-md group-hover:bg-indigo-500 transition-all cursor-pointer"
