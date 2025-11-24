@@ -53,7 +53,7 @@ function CombinationChosen({
 
   return (
     <div style={{ display: show ? "block" : "none" }}>
-      <div className={cx("title", "text-center")}>
+      <div className={cx("fs-1 fw-bold mb-4", "text-center")}>
         <h3>Biểu đồ thống kê số lượng học sinh chọn các tổ hợp</h3>
       </div>
       <div className={cx("wrapper")}>
