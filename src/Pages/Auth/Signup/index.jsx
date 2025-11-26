@@ -12,6 +12,7 @@ import { useAuth } from "../../../Contexts/AuthContext";
 import { useMediaQuery } from "react-responsive";
 import Spinner from "react-bootstrap/esm/Spinner";
 import { API_ENDPOINT } from "../../../constants";
+import Loading from "../../../Components/Loading";
 
 const cx = classNames.bind(style);
 
@@ -112,6 +113,7 @@ function Signup() {
   };
   return (
     <div className={cx("wrapper")}>
+      {isLoading && <Loading title="Đang đăng ký tài khoản" />}
       <Pc>
         <div className={cx("box-login")}>
           <div className={cx("box")}>
