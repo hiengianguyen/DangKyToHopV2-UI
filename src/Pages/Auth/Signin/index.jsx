@@ -10,8 +10,8 @@ import BannerLogin from "../BannerLogin";
 import axios from "axios";
 import { useAuth } from "../../../Contexts/AuthContext";
 import { useMediaQuery } from "react-responsive";
-import Spinner from "react-bootstrap/esm/Spinner";
 import { API_ENDPOINT } from "../../../constants";
+import Loading from "../../../Components/Loading";
 
 const cx = classNames.bind(style);
 
@@ -68,8 +68,6 @@ function Signin() {
           password: password
         })
         .then((axiosData) => {
-          console.log(axiosData.data);
-
           if (axiosData.data.isSuccess) {
             login(axiosData.data);
             if (axiosData.data.user.role === "student") {
@@ -89,6 +87,7 @@ function Signin() {
 
   return (
     <div className={cx("wrapper")}>
+      {isLoading && <Loading title="Đang đăng nhập vào hệ thống" />}
       <Pc>
         <div className={cx("box-login")}>
           <div className={cx("box")}>
@@ -195,13 +194,7 @@ function Signin() {
                   <Form.Control.Feedback type="invalid">{errorPass}</Form.Control.Feedback>
                 </Form.Group>
                 <Button variant="primary" type="submit" style={{ width: "100%", fontSize: "16px" }} disabled={isLoading}>
-                  {isLoading ? (
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  ) : (
-                    "ĐĂNG NHẬP"
-                  )}
+                  ĐĂNG NHẬP
                 </Button>
                 <div className={cx("login-comment", "d-flex flex-column")}>
                   <p>Bạn chưa có tài khoản?</p>
