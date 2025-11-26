@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "react-responsive";
+import { API_ENDPOINT } from "../../../constants";
 
 function CombinationStat() {
   const [dataChart, setDataChart] = useState({});
@@ -34,7 +35,7 @@ function CombinationStat() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/combination/analytics")
+      .get(API_ENDPOINT + "/combination/analytics")
       .then((axiosData) => {
         if (axiosData.data.isSuccess) {
           setDataChart(axiosData.data);

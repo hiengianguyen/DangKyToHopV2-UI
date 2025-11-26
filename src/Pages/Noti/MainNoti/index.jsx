@@ -3,7 +3,7 @@ import style from "../Noti.module.scss";
 import BoxRadius from "../../../Components/BoxRadius";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Links, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../Components/Loading";
@@ -43,7 +43,7 @@ function MainNoti() {
         navigator("/auth/signin");
       }
     });
-  }, [navigator]);
+  }, [navigator, auth?.user?.role]);
 
   const deleteNoti = (id) => {
     toast
