@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import Modal from "react-bootstrap/esm/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { API_ENDPOINT } from "../../../constants";
+import { useAuth } from "../../../Contexts/AuthContext";
 
 const cx = classNames.bind(style);
 
@@ -23,6 +24,7 @@ function MainNoti() {
   const [listAction, setListAction] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [notiDelete, setNotiDelete] = useState("");
+  const { auth } = useAuth();
 
   const navigator = useNavigate();
 
@@ -31,7 +33,7 @@ function MainNoti() {
   }, []);
 
   useEffect(() => {
-    axios.get(API_ENDPOINT + "/notification").then((axiosData) => {
+    axios.get(API_ENDPOINT + "/notification?role=" + auth.user.role).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setListNoti(axiosData.data.notifications);
         setNotiSubmittedStatus(axiosData.data.notiSubmittedStatus);
@@ -68,59 +70,65 @@ function MainNoti() {
             <p style={{ fontSize: "20px", color: "#666" }}>Cập nhật tin tức tuyển sinh và hoạt động học tập mới nhất</p>
           </div>
           {role === "manager" ? (
-            <div className={cx("d-flex", "justify-content-end", "container", "mb-2", "btn-gen-noti")}>
+            <div className={cx("d-flex", "justify-content-end", "container", "mb-4", "btn-gen-noti")}>
               <Link to="/notification/generator" className="btn btn-primary text-white fs-2">
                 <FontAwesomeIcon icon={faPlus} className="me-1" /> Tạo thông báo mới
               </Link>
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
-            {JSON.stringify(notiSubmittedStatus) !== "{}" && notiSubmittedStatus.typeNoti === "approved" ? (
-              <div
-                className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-green-50", "box-submitted-noti", {
-                  success: notiSubmittedStatus.typeNoti === "approved"
-                })}
-              >
-                <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
-                  <svg className="size-14 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            {(auth.user.role !== "manager" || JSON.stringify(notiSubmittedStatus) !== "{}") &&
+              (notiSubmittedStatus.typeNoti === "approved" ? (
+                <div
+                  className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-green-50", "box-submitted-noti", {
+                    success: notiSubmittedStatus.typeNoti === "approved"
+                  })}
+                >
+                  <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
+                    <svg className="size-14 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h1 className="fw-bold text-emerald-900">Chúc mừng! Hồ sơ của bạn đã được phê duyệt</h1>
+                    <span className="text-emerald-700">
+                      Hồ sơ đăng ký tuyển sinh của bạn đã đáp ứng đủ điều kiện. Vui lòng xem hướng dẫn nhập học chi tiết ở website của{" "}
+                      <b className="text-emerald-800">trường THPT Duy Tân</b>
+                    </span>
+                  </div>
+                  <Link to={"/combination/detail"} className="btn btn-success text-white fs-4 fw-bold">
+                    Xem thông tin trạng thái
+                  </Link>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <h1 className="fw-bold text-emerald-900">Chúc mừng! Hồ sơ của bạn đã được phê duyệt</h1>
-                  <span className="text-emerald-700">
-                    Hồ sơ đăng ký tuyển sinh của bạn đã đáp ứng đủ điều kiện. Vui lòng xem hướng dẫn nhập học chi tiết ở website của{" "}
-                    <b className="text-emerald-800">trường THPT Duy Tân</b>
-                  </span>
+              ) : (
+                <div className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-red-50", "box-submitted-noti")}>
+                  <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
+                    <svg className="size-14 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h1 className="fw-bold text-red-900">Yêu cầu bổ sung hồ sơ</h1>
+                    <span className="text-red-700">
+                      Hồ sơ của bạn còn thiếu một số thông tin quan trọng. Vui lòng cập nhật trước ngày{" "}
+                      <b className="text-red-800">30/11/2025</b> để được tiếp tục xét duyệt.
+                    </span>
+                  </div>
+                  <Link to={"/combination/detail"} className="btn btn-danger text-white fs-4 fw-bold">
+                    Xem thông tin trạng thái
+                  </Link>
                 </div>
-                <Link to={"/combination/detail"} className="btn btn-success text-white fs-4 fw-bold">
-                  Xem thông tin trạng thái
-                </Link>
-              </div>
-            ) : (
-              <div className={cx("flex items-center p-8 gap-8 mb-12 rounded-4 bg-red-50", "box-submitted-noti")}>
-                <div className="rounded-full bg-white shadow-sm p-2 flex justify-center items-center">
-                  <svg className="size-14 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
-                  </svg>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h1 className="fw-bold text-red-900">Yêu cầu bổ sung hồ sơ</h1>
-                  <span className="text-red-700">
-                    Hồ sơ của bạn còn thiếu một số thông tin quan trọng. Vui lòng cập nhật trước ngày{" "}
-                    <b className="text-red-800">30/11/2025</b> để được tiếp tục xét duyệt.
-                  </span>
-                </div>
-                <Link to={"/combination/detail"} className="btn btn-danger text-white fs-4 fw-bold">
-                  Xem thông tin trạng thái
-                </Link>
-              </div>
-            )}
+              ))}
             {listNoti ? (
               listNoti.map((item, index) => (
                 <div
