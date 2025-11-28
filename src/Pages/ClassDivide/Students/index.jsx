@@ -19,7 +19,6 @@ import Col from "react-bootstrap/esm/Col";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import NonDataImg from "./Component/NonDataImg";
-import BtnSrcollTop from "../../../Components/BtnScrollTop";
 import { API_ENDPOINT } from "../../../constants";
 
 const cx = classNames.bind(style);

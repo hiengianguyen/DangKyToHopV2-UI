@@ -2,7 +2,6 @@ import classNames from "classnames/bind";
 import style from "./Contact.module.scss";
 import BoxRadius from "../../Components/BoxRadius";
 import { useEffect } from "react";
-import BtnSrcollTop from "../../Components/BtnScrollTop";
 
 const cx = classNames.bind(style);
 
