@@ -358,7 +358,6 @@ function School() {
           </div>
         </div>
       </Desktop>
-      <BtnSrcollTop />
     </>
   );
 }

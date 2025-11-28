@@ -9,6 +9,7 @@ import CombinationTable from "../../Component/CombinationTable";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
@@ -38,8 +39,6 @@ const combinations = [
 function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueStudent = () => {} }) {
   const formRef = useRef();
   const [formElememt, setFormElememt] = useState();
-  const [combination1, setCombination1] = useState(combinations);
-  const [combination2, setCombination2] = useState(combinations);
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -50,19 +49,15 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
     document.title = "Đăng ký tổ hợp | Chọn tổ hợp";
   }, []);
 
-  const handleChangeCombination = (value, combination) => {
-    const mainCombinations = combinations;
-    if (combination === 1) {
-      setCombination2(() => mainCombinations.filter((item) => item.value !== value));
-    } else {
-      setCombination1(() => mainCombinations.filter((item) => item.value !== value));
-    }
-  };
-
   const handleSubmit = () => {
     if (formElememt.checkValidity()) {
       const formData = new FormData(formElememt);
       const data = Object.fromEntries(formData.entries());
+
+      if (data.combination1 === data.combination2) {
+        toast.error("Không thể chọn trùng tổ hợp");
+        return;
+      }
       setValueStudent((prev) => ({ ...prev, ...data }));
       setCurrPage(4);
     }
@@ -157,8 +152,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                         name="combination1"
                         valueNoti="Tổ hợp"
                         selected={valueStudent.combination1}
-                        onChange={(e) => handleChangeCombination(e.target.value, 1)}
-                        opts={combination1}
+                        opts={combinations}
                         noLabel
                       />
                     </div>
@@ -174,8 +168,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                         name="combination2"
                         valueNoti="Tổ hợp"
                         selected={valueStudent.combination2}
-                        onChange={(e) => handleChangeCombination(e.target.value, 2)}
-                        opts={combination2}
+                        opts={combinations}
                         noLabel
                       />
                     </div>

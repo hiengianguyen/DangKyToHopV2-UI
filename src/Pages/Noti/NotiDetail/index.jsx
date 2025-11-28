@@ -49,7 +49,7 @@ function NotiDetail() {
             ) : (
               <>
                 <a
-                  className="btn btn-primary text-white"
+                  className="btn btn-primary fs-3 text-white"
                   href={`https://docs.google.com/document/d/e/${notiDetail.fileUrl}?embedded=true`}
                   target="_blank"
                   rel="noreferrer"

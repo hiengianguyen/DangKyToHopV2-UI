@@ -11,7 +11,7 @@ function BtnSrcollTop() {
   const [showGoTop, setShowGoTop] = useState(false);
 
   const handleVisibleButton = () => {
-    setShowGoTop(window.pageYOffset > 600);
+    setShowGoTop(window.pageYOffset > 200);
   };
 
   const handleScrollUp = () => {
@@ -32,14 +32,15 @@ function BtnSrcollTop() {
         {showGoTop && (
           <motion.div
             key="box"
-            initial={{ opacity: 0, transform: "translateY(10px)" }}
-            animate={{ opacity: 1, transform: "translateY(0)" }}
-            exit={{ opacity: 0, transform: "translateY(10px)" }}
+            className={cx("wrapper", "shadow")}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.5 }}
+            onClick={handleScrollUp}
+            title="Trượt lên"
           >
-            <div className={cx("wrapper", "shadow")} onClick={handleScrollUp} title="Trượt lên">
-              <FontAwesomeIcon icon={faArrowUp} className="" />
-            </div>
+            <FontAwesomeIcon icon={faArrowUp} className="" />
           </motion.div>
         )}
       </AnimatePresence>
