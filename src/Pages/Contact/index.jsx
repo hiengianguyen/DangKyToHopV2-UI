@@ -54,7 +54,6 @@ function Contact() {
           </ul>
         </div>
       </div>
-      <BtnSrcollTop />
     </BoxRadius>
   );
 }

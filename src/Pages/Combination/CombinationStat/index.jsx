@@ -75,7 +75,7 @@ function CombinationStat() {
               value={dataChart.submittedGoal}
               title="Chỉ tiêu tuyển sinh"
               color="bg-purple-500"
-              subText={`5% so với chỉ tiêu`}
+              subText={`${((dataChart.length / dataChart.submittedGoal) * 100).toFixed(2)}% so với chỉ tiêu`}
               icon={
                 <svg className="w-18 h-18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -86,7 +86,7 @@ function CombinationStat() {
               value={dataChart.approvedLength}
               title="Tổng hồ sơ nộp"
               color="bg-emerald-500"
-              subText={`3,75% chỉ tiêu đã đạt`}
+              subText={`${((dataChart.approvedLength / dataChart.submittedGoal) * 100).toFixed(2)}% chỉ tiêu đã đạt`}
               icon={
                 <svg className="w-18 h-18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -128,7 +128,7 @@ function CombinationStat() {
                 value={dataChart.submittedGoal}
                 title="Chỉ tiêu tuyển sinh"
                 color="bg-purple-500"
-                subText={`240% so với chỉ tiêu`}
+                subText={`${((dataChart.length / dataChart.submittedGoal) * 100).toFixed(2)}% so với chỉ tiêu`}
                 icon={
                   <svg className="w-18 h-18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -140,6 +140,7 @@ function CombinationStat() {
               <StartCard
                 value={dataChart.approvedLength}
                 title="Tổng hồ sơ nộp"
+                subText={`${((dataChart.approvedLength / dataChart.submittedGoal) * 100).toFixed(2)} chỉ tiêu đã đạt`}
                 color="bg-emerald-500"
                 icon={
                   <svg className="w-18 h-18" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -6,6 +6,7 @@ import GlobalStyle from "./Components/GlobalStyle";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
+import BtnSrcollTop from "./Components/BtnScrollTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <GlobalStyle>
       <App />
       <Toaster position="top-right" />
+      <BtnSrcollTop />
     </GlobalStyle>
   </AuthProvider>
   // </React.StrictMode>
