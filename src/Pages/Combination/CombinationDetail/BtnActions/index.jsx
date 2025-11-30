@@ -41,12 +41,7 @@ function BtnActions({ userId = "", disabled = false, keyPage = "1" }) {
         {auth?.user?.role === "student" ? (
           <>
             <Col xs={"auto"}>
-              <Link
-                to="/combination/submit-combination?step=2"
-                className={cx("btnAction", "btn", "btn-secondary", {
-                  disabled: disabled
-                })}
-              >
+              <Link to="/combination/register" className={cx("btnAction", "btn", "btn-secondary")}>
                 Chỉnh sửa
               </Link>
             </Col>
